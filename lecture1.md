@@ -35,6 +35,61 @@ $$
 \newcommand{\vk}{{\bar{\nu}_k}}
 \newcommand{\hatFmat}{\hat{\mathbf{F}}}
 \newcommand{\Fmat}{{\mathbf{F}}}
+
+%\newcommand{\ellpminusone}{{\ellp \hspace{-0.2mm}-\hspace{-0.2mm} 1}}
+%\newcommand{\ellminusone}{{\ell \hspace{-0.2mm}-\hspace{-0.2mm} 1}}
+%\newcommand{\ellplusone}{{\ell  \hspace{-0.2mm}+\hspace{-0.2mm} 1}}
+%\newcommand{\ellplustwo}{{\ell  \hspace{-0.2mm}+\hspace{-0.2mm} 2}}
+%\newcommand{\ellminustwo}{{\ell \hspace{-0.2mm}-\hspace{-0.2mm} 2}}
+%%\renewcommand{\bell}{{\bar \ell}}
+%\newcommand{\tell}{{\tilde \ell}}
+%\newcommand{\ellp}{{\ell'}}
+%\newcommand{\tellp}{{{\tilde \ell}'}}
+%\newcommand{\neLL}{{\mathscr{L}}}  %normal size
+%% \neLL needs fontsize 7.5 when used in a figure 
+%\newcommand{\eLL}{{\mbox{\small$\mathscr{L}$}}}
+%\newcommand{\seLL}{{\scriptscriptstyle \! \mathscr{L}}}
+%\newcommand{\scripteLL}{{\scriptstyle \mathscr{L}}}
+%\newcommand{\sseLL}{{{\mbox{\tiny$\!\mathscr{L}$}}}}
+%\newcommand{\boldell}{{\boldsymbol{\ell}}}
+%\newcommand{\boldellp}{{\boldsymbol{\ell}}'}
+%\newcommand{\eDD}{{\mbox{\small$\mathscr{D}$}}}
+%\newcommand{\crit}{{\mathrm c}}
+% \newcommand{\cR}{{\mbox{\small$\mathscr{R}$}}}
+% \newcommand{\scR}{{\scriptscriptstyle \! \mathscr{R}}}
+% \newcommand{\scriptcR}{{\scriptstyle \mathscr{R}}}
+% \newcommand{\sscR}{{{\mbox{\tiny$\!\mathscr{R}$}}}}
+% \newcommand{\cN}{{\mbox{\small$\mathscr{N}$}}}
+% \newcommand{\scN}{{\scriptscriptstyle \! \mathscr{N}}}
+% \newcommand{\scriptcN}{{\scriptstyle \mathscr{N}}}
+% \newcommand{\sscN}{{{\mbox{\tiny$\!\mathscr{N}$}}}}
+
+\newcommand{\cR}{{\mathcal{R}}}
+\newcommand{\scR}{{\scriptstyle \mathcal{R}}}
+\newcommand{\sscR}{{\scriptscriptstyle \mathcal{R}}}
+
+\newcommand{\cN}{{\mathcal{N}}}
+\newcommand{\scN}{{\scriptstyle \mathcal{N}}}
+\newcommand{\sscN}{{\scriptscriptstyle \mathcal{N}}}
+
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\scL}{{\scriptstyle \mathcal{L}}}
+\newcommand{\sscL}{{\scriptscriptstyle \mathcal{L}}}
+
+\newcommand{\sigmaL}{\sigma_{\!\scL}}
+
+%\newcommand{\sigmaR}{\sigmas_{\!\scR}}
+%\newcommand{\cS}{{{\mbox{\scalefont{0.97}$\mathcal{S}$}}}}
+%\newcommand{\scS}{{{\mbox{\scalefont{0.7}$\mathcal{S}$}}}}
+%\newcommand{\sscS}{{\scalefont{0.5}\cS}}
+%\newcommand{\sigmasS}{\sigmas_{\scS}}
+%\newcommand{\localdim}{d}
+%\newcommand{\slocaldim}{d}
+%\newcommand{\sslocaldim}{d}
+% \newcommand{\localdim}{\Delta}
+% \newcommand{\slocaldim}{\Delta}
+% \newcommand{\sslocaldim}{\Delta}
+
 $$
 
 Tensor representation learning for physics (1)
@@ -43,6 +98,8 @@ Tensor representation learning for physics (1)
 ##### 品岡寛 (埼玉大学)
 
 ![center height:280px](fig/IR.png)
+
+$\cR, \scR, \sscR$
 
 ---
 # 自己紹介 [https://shinaoka.github.io](https://shinaoka.github.io)
@@ -75,7 +132,7 @@ Tensor representation learning for physics (1)
 ---
 # テンソルネットワークとは？ (復習)
 
-ここでいうテンソルとは、単なる多次元データです (難しい物理・数学の話は忘れてください)。
+ここでいうテンソルとは、単なる多次元データです (難しい物理・数学の話は忘れてください).
 
 
 ---
@@ -89,10 +146,10 @@ Wikipedia: 「十進法（じっしんほう、（英: decimal system）とは�
 ---
 # 10進法の例
 
-例えば, 3桁の非負整数を考えてみよう ($\mathscr{R}=3$)。
-$i = 0, 1, 2, \cdots, 10, 11, \cdots, 100, 101, \cdots, 999$
+例えば, 3桁の非負整数を考えてみよう ($\mathscr{R}=3$):
+$i = 0, 1, 2, \cdots, 10, 11, \cdots, 100, 101, \cdots, 999.$
 
-1つの数字を異なる桁を表す複数の数字の組で表現する。
+1つの数字を異なる桁を表す複数の数字の組で表現する.
 $i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
 
 ただし, $a_r = 0, 1, \cdots, 9$.
@@ -100,7 +157,7 @@ $i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
 ---
 # なぜ10進法が便利なのか？
 
-桁数$\mathscr{R}$を増やせば, 整数の最大値 ($10^\mathscr{R}-1$)を指数的に大きく出来る！
+桁数$\cR$を増やせば, 表現可能な整数の最大値 ($10^\scR-1$)を指数的に大きく出来る！
 
 $i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
 
@@ -109,8 +166,13 @@ $i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
 ---
 # 2進法
 
-底を10と普通選ぶのは, 人間の指の数が10本だから。現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
+底を10と普通選ぶのは, 人間の指の数が10本だから. 現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
 
-$i = a_1 \times 2^{\mathscr{R}-1} + \cdots + a_r \times 2^{\mathscr{R}-r} + \cdots + a_\mathscr{R} \times 2^0 = (a_1 a_2 \cdots a_\mathscr{R})_2$.
+$i = a_1 \times 2^{\scR-1} + \cdots + a_r \times 2^{\scR-r} + \cdots + a_\scR \times 2^0 = (a_1 a_2 \cdots a_\scR)_2$.
 
-Quanticsでは通常2進数を使うが, 底は任意.
+ただし, $a_r = 0, 1$.
+
+Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フラクタルなどを除く).
+
+---
+# Quantics representation (1変数の場合)
