@@ -76,3 +76,41 @@ Tensor representation learning for physics (1)
 # テンソルネットワークとは？ (復習)
 
 ここでいうテンソルとは、単なる多次元データです (難しい物理・数学の話は忘れてください)。
+
+
+---
+# Quantics representation
+
+---
+# そもそも10進法ってなに？
+
+Wikipedia: 「十進法（じっしんほう、（英: decimal system）とは、十を底（てい）とし、底およびその冪を基準にして数を表す方法である。」
+
+---
+# 10進法の例
+
+例えば, 3桁の非負整数を考えてみよう ($\mathscr{R}=3$)。
+$i = 0, 1, 2, \cdots, 10, 11, \cdots, 100, 101, \cdots, 999$
+
+1つの数字を異なる桁を表す複数の数字の組で表現する。
+$i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
+
+ただし, $a_r = 0, 1, \cdots, 9$.
+
+---
+# なぜ10進法が便利なのか？
+
+桁数$\mathscr{R}$を増やせば, 整数の最大値 ($10^\mathscr{R}-1$)を指数的に大きく出来る！
+
+$i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
+
+
+
+---
+# 2進法
+
+底を10と普通選ぶのは, 人間の指の数が10本だから。現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
+
+$i = a_1 \times 2^{\mathscr{R}-1} + \cdots + a_r \times 2^{\mathscr{R}-r} + \cdots + a_\mathscr{R} \times 2^0 = (a_1 a_2 \cdots a_\mathscr{R})_2$.
+
+Quanticsでは通常2進数を使うが, 底は任意.
