@@ -21,6 +21,16 @@ img[alt~="center"] {
 }
 </style>
 
+<style>
+.title {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+</style>
+
+
 $$
 \newcommand{\iv}{{\mathrm{i}\nu}}
 \newcommand{\iwk}{{\mathrm{i}\bar{\omega}_k}}
@@ -78,6 +88,8 @@ $$
 
 \newcommand{\sigmaL}{\sigma_{\!\scL}}
 
+\def\bsigma{{\boldsymbol{\sigma}}} 
+
 %\newcommand{\sigmaR}{\sigmas_{\!\scR}}
 %\newcommand{\cS}{{{\mbox{\scalefont{0.97}$\mathcal{S}$}}}}
 %\newcommand{\scS}{{{\mbox{\scalefont{0.7}$\mathcal{S}$}}}}
@@ -97,9 +109,6 @@ Tensor representation learning for physics (1)
 
 ##### 品岡寛 (埼玉大学)
 
-![center height:280px](fig/IR.png)
-
-$\cR, \scR, \sscR$
 
 ---
 # 自己紹介 [https://shinaoka.github.io](https://shinaoka.github.io)
@@ -150,7 +159,7 @@ Wikipedia: 「十進法（じっしんほう、（英: decimal system）とは�
 $i = 0, 1, 2, \cdots, 10, 11, \cdots, 100, 101, \cdots, 999.$
 
 1つの数字を異なる桁を表す複数の数字の組で表現する.
-$i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
+$i = a_1 \times \textcolor{red}{10^2} + a_2 \times \textcolor{red}{10^1} + a_3 \times \textcolor{red}{10^0} = (a_1 a_2 a_3)_{10}$.
 
 ただし, $a_r = 0, 1, \cdots, 9$.
 
@@ -159,7 +168,7 @@ $i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
 
 桁数$\cR$を増やせば, 表現可能な整数の最大値 ($10^\scR-1$)を指数的に大きく出来る！
 
-$i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
+$i = a_1 \times \textcolor{red}{10^{\scR-1}} + \cdots + a_r \times \textcolor{red}{10^{\scR-r}} + \cdots + a_\scR \times \textcolor{red}{10^0} = (a_1 a_2 \cdots a_\scR)_{10}$.
 
 
 
@@ -168,11 +177,73 @@ $i = a_1 \times 10^2 + a_2 \times 10^1 + a_3 \times 10^0 = (a_1 a_2 a_3)_{10}$.
 
 底を10と普通選ぶのは, 人間の指の数が10本だから. 現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
 
-$i = a_1 \times 2^{\scR-1} + \cdots + a_r \times 2^{\scR-r} + \cdots + a_\scR \times 2^0 = (a_1 a_2 \cdots a_\scR)_2$.
+$i = a_1 \times \textcolor{red}{2^{\scR-1}} + \cdots + a_r \times \textcolor{red}{2^{\scR-r}} + \cdots + a_\scR \times \textcolor{red}{2^0} = (a_1 a_2 \cdots a_\scR)_2$.
 
 ただし, $a_r = 0, 1$.
 
+<!--
 Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フラクタルなどを除く).
+-->
 
 ---
-# Quantics representation (1変数の場合)
+# Quantics representation (1変数)[1]
+
+関数: $f(x),~x \in [x_\mathrm{min}, x_\mathrm{max}]$を考える。
+
+大きさ$M=2^\scR$の等間隔グリッド:
+
+$$
+\{x_\mathrm{min} + \delta \times m: m=0, 1, \cdots, M-1\},~\delta \equiv (x_\mathrm{max} - x_\mathrm{min})/M
+$$
+
+関数$f(x)$は, 大きさ$2^\scR$の1次元データ $F_m$に離散化
+
+ここに図
+
+<!--
+ $M=2^\cR$ ($m=0, 1, 2, \cdots, M-1$):
+
+$$
+m(\bsigma) = m(\sigma_1, \sigma_2, \cdots, \sigma_\scR) = \sum_{r=1}^\scR \sigma_r 2^{\scR -r } = (\sigma_1 \cdots \sigma_\scR)_2.
+$$
+
+$\delta = (x_\mathrm{max} - x_\mathrm{min})/M$
+
+$\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
+
+\textcolor{red}{ここに図を入れる.}
+-->
+
+---
+# Quantics representation (1変数)[2]
+
+$m~(=0, 1, \cdots, 2^\scR-1)$を2進数表示:
+
+$$
+m = \sum_{r=1}^\scR \sigma_r 2^{\scR -r } = (\sigma_1 \cdots \sigma_\scR)_2.
+$$
+
+関数は, $\cR$個の脚を持つテンソルとして見なせる:
+
+$$
+F_\bsigma \equiv f(x_\mathrm{min} + \delta \times m)
+$$
+
+<!--
+長さ$2^\scR$の1次元を, 大きさ$(2, 2, \cdots, 2)$の$\cR$階テンソルにreshapeすることに対応
+
+ここに図
+-->
+
+
+---
+# Quantics representation (1変数)[3]
+
+<!--
+大きなインデックス$m$を, $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$で表現！
+-->
+多次元テンソルは分解が可能 (tensor train, tree tensor network...)
+
+Quantics (quantized) Tensor Train (=QTT):
+
+図
