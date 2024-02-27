@@ -97,7 +97,7 @@ $$
 Tensor representation learning for physics (1)
 ===
 
-##### 品岡寛 (埼玉大学)
+##### Hiroshi SHINAOKA (Saitama University)
 
 
 ---
@@ -173,7 +173,7 @@ $i = 0, 1, 2, \cdots, 10, 11, \cdots, 100, 101, \cdots, 999.$
 1つの数字を異なる桁を表す複数の数字の組で表現する.
 $i = a_1 \times \textcolor{red}{10^2} + a_2 \times \textcolor{red}{10^1} + a_3 \times \textcolor{red}{10^0} = (a_1 a_2 a_3)_{10}$.
 
-ただし, $a_r = 0, 1, \cdots, 9$.
+ただし, $a_r \in \{0, 1, \cdots, 9\}$.
 
 ---
 # なぜ10進法が便利なのか？
@@ -187,7 +187,8 @@ $i = a_1 \times \textcolor{red}{10^{\scR-1}} + \cdots + a_r \times \textcolor{re
 ---
 # 2進法
 
-底10が一般的なのは, 人間の指の数が10本だから. 現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
+底10が一般的なのは, 人間の指の数が10本だから.
+コンピュータの内部表現は2進数 (0, 1が電気信号のON, OFFと対応).
 
 $i = a_1 \times \textcolor{red}{2^{\scR-1}} + \cdots + a_r \times \textcolor{red}{2^{\scR-r}} + \cdots + a_\scR \times \textcolor{red}{2^0} = (a_1 a_2 \cdots a_\scR)_2$.
 
@@ -300,8 +301,11 @@ $f(x, y) = e^{x + y}$の場合を考える.
 ---
 # Learning TNR: Tensor Cross Interpolation (TCI)
 
-与えられた関数/データから, テンソルネットワーク表現を自動的に学習したい.
-TCIはそのための手法の一つ.
+与えられた関数/データから,
+* 低ランクテンソルネットワーク表現の有無を判断したい,
+* あるなら(半)自動的に構築したい.
+
+**TCIは, そのような目的に使える手法の一つ.**
 
 ---
 # Tensor Cross Interpolation (TCI) in a nutshell
@@ -326,7 +330,16 @@ TCIはそのための手法の一つ.
 
 $\cR$
 
+積分できるよ〜
+
 ---
 # TCIのコード例
 
 フーリエ変換カーネルを使って, 2次元関数のQTT表現を求める.
+
+
+---
+# 特異値分解との比較 (玄人向け)
+
+* 特異値分解は, フロベニウスノルムの意味で最適なランクを求める厳密な手法.
+* MCIは, **最大値ノルム**の意味で**準最適**なランクを求める**ヒューリスティック**な手法.
