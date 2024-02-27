@@ -1,6 +1,6 @@
 ---
 marp: true
-header: Tensor representation learning for physics
+header: Tensor network representation learning for physics
 footer: ©2024 H. Shinaoka
 # Page number
 paginate: true
@@ -121,12 +121,18 @@ Tensor representation learning for physics (1)
 ### おおまかな流れ
 
 1. 関数 $\rightarrow$ テンソルネットワーク？
-   - Tensor networkの復習
+   - Tensor networkの復習 [昨年の大久保さんの講義の最初30分](https://www.youtube.com/watch?v=i2wsatfsogI)
    - Natural & quantics tensor network representation (TNR) of a function
    - Learning TNR: Tensor Cross Interpolation (TCI)
 2. Juliaライブラリで実践してみる
 
 
+---
+# 予習資料
+
+- テンソルネットワーク: [昨年の大久保さんの講義の最初30分](https://www.youtube.com/watch?v=i2wsatfsogI)
+- Quantics Tensor Train: [日本物理学会誌の記事]()
+- Julia予備知識: 初日の講義の寺崎さんの講義で紹介します.
 
 ---
 # 具体例
@@ -321,3 +327,10 @@ TCIはそのための手法の一つ.
 
 ---
 # TCIのコード例
+
+関数コールだけでOK.
+
+---
+# TCIのコード例
+
+フーリエ変換カーネルを使って, 2次元関数のQTT表現を求める.
