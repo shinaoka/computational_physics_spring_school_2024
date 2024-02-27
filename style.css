@@ -1,0 +1,17 @@
+.title {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* To show total number of pages for paginate = true */
+section::after {
+  content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
+}
+
+/* add center keyword for figure */
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}

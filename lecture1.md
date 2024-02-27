@@ -4,31 +4,22 @@ header: Tensor representation learning for physics
 footer: ©2024 H. Shinaoka
 # Page number
 paginate: true
+#style: ./style.css
 ---
 
-<!-- To show total number of pages for paginate = true -->
 <style>
 section::after {
   content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
 }
-</style>
 
 <!-- add center keyword for figure -->
-<style>
 img[alt~="center"] {
   display: block;
   margin: 0 auto;
 }
+
 </style>
 
-<style>
-.title {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  text-align: center;
-}
-</style>
 
 
 $$
@@ -237,7 +228,7 @@ $$
 
 
 ---
-# Quantics representation (1変数)[3]
+# Quantics tensor networks (1変数)
 
 <!--
 大きなインデックス$m$を, $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$で表現！
@@ -247,3 +238,7 @@ $$
 Quantics (quantized) Tensor Train (=QTT):
 
 図
+
+
+---
+# 演習問題
