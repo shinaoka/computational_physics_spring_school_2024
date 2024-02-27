@@ -91,39 +91,30 @@ $$
 % \newcommand{\localdim}{\Delta}
 % \newcommand{\slocaldim}{\Delta}
 % \newcommand{\sslocaldim}{\Delta}
-
 $$
 
-Tensor representation learning for physics (1)
+Tensor network representation learning for physics (1)
 ===
 
-##### Hiroshi SHINAOKA (Saitama University)
+### Hiroshi SHINAOKA (Saitama University)
+<br>
 
-
----
-# 自己紹介 [https://shinaoka.github.io](https://shinaoka.github.io)
-
-* 経歴
-  - 博士 (工学) 2009年3月@東大物工
-  - ポスドク 2009年3月〜2015年9月 (東大、産総研、チューリッヒ連邦工科大)
-  - 埼玉大 2015年10月〜
-* 専門
-  - 量子多体理論、第一原理計算、幾何学的フラストレート磁性･･･
-  - 情報縮約技術と場の量子論を融合することに興味 ($\rightarrow$ 計算物性物理のフロンティアを拡げたい！)
+- 専門: 量子多体理論、第一原理計算、幾何学的フラストレート磁性･･･
+- 興味: 情報縮約技術と場の量子論 (計算物性物理のフロンティアを拡げたい！)
 
 ---
 # 今日の講義
 
 ### 目標
-データをテンソルネットワークで表現し, その特徴を抽出する方法を学ぶ
+データ/関数をテンソルネットワークで表現し, その特徴を抽出する方法を学ぶ.
 
-### おおまかな流れ
-
-1. 関数 $\rightarrow$ テンソルネットワーク？
+* 前半
    - Tensor networkの復習
    - Natural & quantics tensor network representation (TNR) of a function
+* 後半
    - Learning TNR: Tensor Cross Interpolation (TCI)
-2. Juliaライブラリで実践してみる
+   - Computation with TNRs
+   - Juliaライブラリで実践してみる
 
 
 ---
@@ -142,7 +133,15 @@ xfac論文から、綺麗な具体例をいくつか示す。
 ---
 # テンソルネットワークとは？ (復習)
 
-ここでいうテンソルとは、単なる多次元データです (難しい物理・数学の話は忘れてください).
+![center height:500px](fig/standardTTtoolboxXavierVersion.png)
+
+<center>
+<span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
+</center>
+
+---
+
+---
 
 
 ---
@@ -151,6 +150,8 @@ xfac論文から、綺麗な具体例をいくつか示す。
 1. Natural representation
 1. Quantics representation
 
+
+
 ---
 # Natural representationとは
 
@@ -158,6 +159,8 @@ xfac論文から、綺麗な具体例をいくつか示す。
 
 ---
 # Quantics representation
+
+少数変数, 桁違いに違う長さスケールがある場合に有効
 
 ---
 # そもそも10進法ってなに？
@@ -290,22 +293,29 @@ $f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めて
 
 MPO表現の図. テンソルの表現を求めさせる
 
----
-# QTTによる演算例
-
-何枚かのスライドを使って, QTTによる演算例を示す.
-$f(x, y) = e^{x + y}$の場合を考える.
-量子フーリエ変換の例も示す.
 
 
 ---
 # Learning TNR: Tensor Cross Interpolation (TCI)
 
-与えられた関数/データから,
+与えられた関数から,
 * 低ランク表現の有無を判定したい,
 * あるなら(半)自動的に構築したい.
 
 **TCIは, そのような目的に使える手法の一つ.**
+
+
+### 注意
+$N$次元テンソル$T$も関数と見なせる:
+$f: \mathbb{R}^N \to \mathbb{C}, \quad f(i_1, i_2, \dots, i_R) = T[i_1, i_2, \cdots, i_R]$
+
+---
+# Example: Quantics + TCI for 1D function
+
+
+---
+# Example: Fourier transform kernel
+
 
 ---
 # Tensor Cross Interpolation (TCI) in a nutshell
@@ -316,12 +326,10 @@ $f(x, y) = e^{x + y}$の場合を考える.
 * **特徴** テンソル全体の要素を計算する必要はない.
 * **デメリット** ヒューリスティクスな手法であり, 一般的な関数に対しては, 成功の保証はない.
 
----
-# Example: Quantics + TCI for 1D function
-
 
 ---
 # Matrix Cross Interpolation (MCI)
+
 
 ---
 # TCIのコード例
@@ -333,13 +341,21 @@ $\cR$
 積分できるよ〜
 
 ---
-# TCIのコード例
+# 特異値によるテンソル分解とTCIの比較 (玄人向け)
 
-フーリエ変換カーネルを使って, 2次元関数のQTT表現を求める.
+### 特異値分解
+* フロベニウスノルム $\sqrt{\sum_i|x_i|^2}$の意味で最適なランクが決定.
+* 全要素読み出しが必要.
+
+
+### MCI
+* **最大値ノルム** $\max_i |x_i|$の意味で**準最適**なランクを求める.
+* 全要素読み出しが不要.
 
 
 ---
-# 特異値分解との比較 (玄人向け)
+# QTTによる演算例
 
-* 特異値分解は, フロベニウスノルムの意味で最適なランクを求める厳密な手法.
-* MCIは, **最大値ノルム**の意味で**準最適**なランクを求める**ヒューリスティック**な手法.
+何枚かのスライドを使って, QTTによる演算例を示す.
+$f(x, y) = e^{x + y}$の場合を考える.
+量子フーリエ変換の例も示す.
