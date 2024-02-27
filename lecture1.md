@@ -113,15 +113,20 @@ Tensor representation learning for physics (1)
   - 情報縮約技術と場の量子論を融合することに興味 ($\rightarrow$ 計算物性物理のフロンティアを拡げたい！)
 
 ---
-# 今日のお話の概要
+# 今日の講義
+
+### 目標
+データをテンソルネットワークで表現し, その特徴を抽出する方法を学ぶ
+
+### おおまかな流れ
 
 1. 関数 $\rightarrow$ テンソルネットワーク？
-   - Tensor network
-   - Quantics representation
-   - Tensor Cross Interpolation (TCI)
+   - Tensor networkの復習
+   - Natural & quantics tensor network representation (TNR) of a function
+   - Learning TNR: Tensor Cross Interpolation (TCI)
 2. Juliaライブラリで実践してみる
 
-英語と日本語が混じっているのは気にしないで下さい...
+
 
 ---
 # 具体例
@@ -281,6 +286,27 @@ Binary coding: $m = (\sigma_1 \cdots \sigma_\scR)_2,~m' = (\sigma'_1 \cdots \sig
 ---
 # 演習問題
 
-離散グリッド上で定義されている, 「単位行列」: $f(m, m') = \delta_{m,m'}$.
+$f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めてみましょう.
 
-ボンド次元が1のQTT表現を求めましょう.
+---
+# Learning TNR: Tensor Cross Interpolation (TCI)
+
+与えられた関数/データから, テンソルネットワーク表現を自動的に学習したい.
+一般的な関数の場合, 低ランク表現が存在するとしても, それを求めることは難しい.
+TCIはそのための手法の一つ.
+
+---
+# Tensor Cross Interpolation (TCI) in a nutshell
+
+テンソルの要素を適応的に探索し, 低ランクテンソルネットワーク表現を求める. 
+
+* **必要条件**  指定された位置のテンソルの値が計算できる.
+* **特徴** テンソル全体の要素を計算する必要はない.
+* **デメリット** ヒューリスティクスな手法であり, 一般的な関数に対しては, 成功の保証はない.
+
+---
+# Example: Quantics + TCI for 1D function
+
+
+---
+# Matrix Cross Interpolation (MCI)
