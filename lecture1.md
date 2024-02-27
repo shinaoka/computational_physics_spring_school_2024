@@ -17,6 +17,13 @@ img[alt~="center"] {
   margin: 0 auto;
 }
 
+h1 {
+  position: absolute;
+  top: 1.5em;
+  width: 100%;
+  text-align: left;
+}
+
 </style>
 
 
@@ -35,35 +42,6 @@ $$
 \newcommand{\vk}{{\bar{\nu}_k}}
 \newcommand{\hatFmat}{\hat{\mathbf{F}}}
 \newcommand{\Fmat}{{\mathbf{F}}}
-
-%\newcommand{\ellpminusone}{{\ellp \hspace{-0.2mm}-\hspace{-0.2mm} 1}}
-%\newcommand{\ellminusone}{{\ell \hspace{-0.2mm}-\hspace{-0.2mm} 1}}
-%\newcommand{\ellplusone}{{\ell  \hspace{-0.2mm}+\hspace{-0.2mm} 1}}
-%\newcommand{\ellplustwo}{{\ell  \hspace{-0.2mm}+\hspace{-0.2mm} 2}}
-%\newcommand{\ellminustwo}{{\ell \hspace{-0.2mm}-\hspace{-0.2mm} 2}}
-%%\renewcommand{\bell}{{\bar \ell}}
-%\newcommand{\tell}{{\tilde \ell}}
-%\newcommand{\ellp}{{\ell'}}
-%\newcommand{\tellp}{{{\tilde \ell}'}}
-%\newcommand{\neLL}{{\mathscr{L}}}  %normal size
-%% \neLL needs fontsize 7.5 when used in a figure 
-%\newcommand{\eLL}{{\mbox{\small$\mathscr{L}$}}}
-%\newcommand{\seLL}{{\scriptscriptstyle \! \mathscr{L}}}
-%\newcommand{\scripteLL}{{\scriptstyle \mathscr{L}}}
-%\newcommand{\sseLL}{{{\mbox{\tiny$\!\mathscr{L}$}}}}
-%\newcommand{\boldell}{{\boldsymbol{\ell}}}
-%\newcommand{\boldellp}{{\boldsymbol{\ell}}'}
-%\newcommand{\eDD}{{\mbox{\small$\mathscr{D}$}}}
-%\newcommand{\crit}{{\mathrm c}}
-% \newcommand{\cR}{{\mbox{\small$\mathscr{R}$}}}
-% \newcommand{\scR}{{\scriptscriptstyle \! \mathscr{R}}}
-% \newcommand{\scriptcR}{{\scriptstyle \mathscr{R}}}
-% \newcommand{\sscR}{{{\mbox{\tiny$\!\mathscr{R}$}}}}
-% \newcommand{\cN}{{\mbox{\small$\mathscr{N}$}}}
-% \newcommand{\scN}{{\scriptscriptstyle \! \mathscr{N}}}
-% \newcommand{\scriptcN}{{\scriptstyle \mathscr{N}}}
-% \newcommand{\sscN}{{{\mbox{\tiny$\!\mathscr{N}$}}}}
-
 \newcommand{\cR}{{\mathcal{R}}}
 \newcommand{\scR}{{\scriptstyle \mathcal{R}}}
 \newcommand{\sscR}{{\scriptscriptstyle \mathcal{R}}}
@@ -79,18 +57,6 @@ $$
 \newcommand{\sigmaL}{\sigma_{\!\scL}}
 
 \def\bsigma{{\boldsymbol{\sigma}}} 
-
-%\newcommand{\sigmaR}{\sigmas_{\!\scR}}
-%\newcommand{\cS}{{{\mbox{\scalefont{0.97}$\mathcal{S}$}}}}
-%\newcommand{\scS}{{{\mbox{\scalefont{0.7}$\mathcal{S}$}}}}
-%\newcommand{\sscS}{{\scalefont{0.5}\cS}}
-%\newcommand{\sigmasS}{\sigmas_{\scS}}
-%\newcommand{\localdim}{d}
-%\newcommand{\slocaldim}{d}
-%\newcommand{\sslocaldim}{d}
-% \newcommand{\localdim}{\Delta}
-% \newcommand{\slocaldim}{\Delta}
-% \newcommand{\sslocaldim}{\Delta}
 $$
 
 Tensor network representation learning for physics
@@ -137,12 +103,12 @@ xfac論文から、綺麗な具体例をいくつか示す。
 
 ---
 # テンソルネットワークとは？ (復習)
-
-![center height:500px](fig/standardTTtoolboxXavierVersion.png)
-
 <center>
 <span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
 </center>
+
+
+![center height:450px bottom](fig/standardTTtoolboxXavierVersion.png)
 
 ---
 
