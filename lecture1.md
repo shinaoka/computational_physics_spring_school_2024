@@ -166,11 +166,11 @@ $i = a_1 \times \textcolor{red}{10^{\scR-1}} + \cdots + a_r \times \textcolor{re
 ---
 # 2進法
 
-底を10と普通選ぶのは, 人間の指の数が10本だから. 現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
+底10が一般的なのは, 人間の指の数が10本だから. 現代のコンピュータでは2進数が内部表現として用いられる (0, 1が電気信号のON, OFFと対応).
 
 $i = a_1 \times \textcolor{red}{2^{\scR-1}} + \cdots + a_r \times \textcolor{red}{2^{\scR-r}} + \cdots + a_\scR \times \textcolor{red}{2^0} = (a_1 a_2 \cdots a_\scR)_2$.
 
-ただし, $a_r = 0, 1$.
+ただし, $a_r \in \{0, 1\}$.
 
 <!--
 Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フラクタルなどを除く).
@@ -232,13 +232,38 @@ $$
 
 <!--
 大きなインデックス$m$を, $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$で表現！
--->
 多次元テンソルは分解が可能 (tensor train, tree tensor network...)
-
 Quantics (quantized) Tensor Train (=QTT):
+-->
+
 
 図
 
+トポロジー, 脚の順番には任意性がある!
+
+---
+# 演習問題
+
+$f(x) = e^{x}~(x\in [0, 1])$は, ボンド1次元のQTT表現を持つことを示しなさい.
+
+---
+# Quantics representation (2変数):
+
+$f(x, y)$: $x \in [x_\mathrm{min}, x_\mathrm{max}], y\in [y_\mathrm{min}, y_\mathrm{max}]$
+
+等間隔2次元グリッド:
+
+$$
+\begin{align}
+    m_x &= 0, 1, 2, \cdots, 2^\scR-1~(=M-1) \\
+    m_y &= 0, 1, 2, \cdots, 2^\scR-1~(=M-1) \\
+\end{align}
+$$
+
+---
+# Quantics tensor networks (2変数):
+
+Binary coding: $m_x = (\sigma_1 \cdots \sigma_\scR)_2,~m_y = (\sigma'_1 \cdots \sigma'_\scR)_2$
 
 ---
 # 演習問題
