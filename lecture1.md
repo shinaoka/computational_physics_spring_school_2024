@@ -310,3 +310,6 @@ TCIはそのための手法の一つ.
 
 ---
 # Matrix Cross Interpolation (MCI)
+
+---
+# TCIのコード例
