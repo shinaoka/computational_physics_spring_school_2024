@@ -126,14 +126,25 @@ Tensor representation learning for physics (1)
 ---
 # 具体例
 
-* 2Dの例
-
+xfac論文から、綺麗な具体例をいくつか示す。
+流体、場の量子論の図も見せて、モチベートする。
 
 ---
 # テンソルネットワークとは？ (復習)
 
 ここでいうテンソルとは、単なる多次元データです (難しい物理・数学の話は忘れてください).
 
+
+---
+# 関数をテンソルネットワーク化する2つの方法
+
+1. Natural representation
+1. Quantics representation
+
+---
+# Natural representationとは
+
+数ページ使って説明する
 
 ---
 # Quantics representation
@@ -220,6 +231,8 @@ $$
 F_\bsigma \equiv f(x_\mathrm{min} + \delta \times m)
 $$
 
+ここに図
+
 <!--
 長さ$2^\scR$の1次元を, 大きさ$(2, 2, \cdots, 2)$の$\cR$階テンソルにreshapeすることに対応
 
@@ -244,7 +257,7 @@ Quantics (quantized) Tensor Train (=QTT):
 ---
 # 演習問題
 
-$f(x) = e^{x}~(x\in [0, 1])$は, ボンド1次元のQTT表現を持つことを示しなさい.
+$f(x) = e^{x}~(x\in [0, 1])$は, ボンド次元1のQTT表現を持つことを示してみましょう.
 
 ---
 # Quantics representation (2変数):
@@ -263,7 +276,11 @@ $$
 ---
 # Quantics tensor networks (2変数):
 
-Binary coding: $m_x = (\sigma_1 \cdots \sigma_\scR)_2,~m_y = (\sigma'_1 \cdots \sigma'_\scR)_2$
+Binary coding: $m = (\sigma_1 \cdots \sigma_\scR)_2,~m' = (\sigma'_1 \cdots \sigma'_\scR)_2$
 
 ---
 # 演習問題
+
+離散グリッド上で定義されている, 「単位行列」: $f(m, m') = \delta_{m,m'}$.
+
+ボンド次元が1のQTT表現を求めましょう.
