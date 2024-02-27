@@ -121,7 +121,7 @@ Tensor representation learning for physics (1)
 ### おおまかな流れ
 
 1. 関数 $\rightarrow$ テンソルネットワーク？
-   - Tensor networkの復習 [昨年の大久保さんの講義の最初30分](https://www.youtube.com/watch?v=i2wsatfsogI)
+   - Tensor networkの復習
    - Natural & quantics tensor network representation (TNR) of a function
    - Learning TNR: Tensor Cross Interpolation (TCI)
 2. Juliaライブラリで実践してみる
@@ -284,15 +284,24 @@ $$
 \end{align}
 $$
 
+2次元グリッドの図
+
 ---
-# Quantics tensor networks (2変数):
+# Quantics tensor train (2変数):
 
 Binary coding: $m = (\sigma_1 \cdots \sigma_\scR)_2,~m' = (\sigma'_1 \cdots \sigma'_\scR)_2$
+
+1. Interleaved (交互的な) representation
+2. Fused (融合した) representation
+
+多くの物理系では, 同じような長さスケール間のエンタングルメントが強い $\rightarrow$ 近くに配置した方が良い.
 
 ---
 # 演習問題
 
 $f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めてみましょう.
+
+MPO表現の図. テンソルの表現を求めさせる
 
 ---
 # QTTによる演算例
