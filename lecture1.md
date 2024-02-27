@@ -12,7 +12,6 @@ section::after {
   content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
 }
 
-<!-- add center keyword for figure -->
 img[alt~="center"] {
   display: block;
   margin: 0 auto;
@@ -244,21 +243,8 @@ $$
 
 ここに図
 
-<!--
-長さ$2^\scR$の1次元を, 大きさ$(2, 2, \cdots, 2)$の$\cR$階テンソルにreshapeすることに対応
-
-ここに図
--->
-
-
 ---
 # Quantics tensor networks (1変数)
-
-<!--
-大きなインデックス$m$を, $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$で表現！
-多次元テンソルは分解が可能 (tensor train, tree tensor network...)
-Quantics (quantized) Tensor Train (=QTT):
--->
 
 
 図
@@ -315,7 +301,6 @@ $f(x, y) = e^{x + y}$の場合を考える.
 # Learning TNR: Tensor Cross Interpolation (TCI)
 
 与えられた関数/データから, テンソルネットワーク表現を自動的に学習したい.
-一般的な関数の場合, 低ランク表現が存在するとしても, それを求めることは難しい.
 TCIはそのための手法の一つ.
 
 ---
@@ -338,6 +323,8 @@ TCIはそのための手法の一つ.
 # TCIのコード例
 
 関数コールだけでOK.
+
+$\cR$
 
 ---
 # TCIのコード例
