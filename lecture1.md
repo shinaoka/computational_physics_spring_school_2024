@@ -93,14 +93,19 @@ $$
 % \newcommand{\sslocaldim}{\Delta}
 $$
 
-Tensor network representation learning for physics (1)
+Tensor network representation learning for physics
 ===
 
 ### Hiroshi SHINAOKA (Saitama University)
 <br>
 
 - 専門: 量子多体理論、第一原理計算、幾何学的フラストレート磁性･･･
-- 興味: 情報縮約技術と場の量子論 (計算物性物理のフロンティアを拡げたい！)
+- 興味: 情報縮約技術と場の量子論 (計算量子物理のフロンティアを拡げたい！)
+
+
+<center>
+<span style="font-size: 0.8em">This lecture is based on Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
+</center>
 
 ---
 # 今日の講義
@@ -348,7 +353,7 @@ $\cR$
 * 全要素読み出しが必要.
 
 
-### MCI
+### TCI/MCI
 * **最大値ノルム** $\max_i |x_i|$の意味で**準最適**なランクを求める.
 * 全要素読み出しが不要.
 
