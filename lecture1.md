@@ -289,6 +289,14 @@ Binary coding: $m = (\sigma_1 \cdots \sigma_\scR)_2,~m' = (\sigma'_1 \cdots \sig
 $f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めてみましょう.
 
 ---
+# QTTによる演算例
+
+何枚かのスライドを使って, QTTによる演算例を示す.
+$f(x, y) = e^{x + y}$の場合を考える.
+量子フーリエ変換の例も示す.
+
+
+---
 # Learning TNR: Tensor Cross Interpolation (TCI)
 
 与えられた関数/データから, テンソルネットワーク表現を自動的に学習したい.
