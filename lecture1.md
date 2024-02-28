@@ -316,8 +316,8 @@ $$
 ![center width:1200px](fig/MCI.png)
 
 * Equality is exact on the selected columns and rows.
+* Equality becomes exact for an exact low-rank matrix.
 * Heuristic algorithms for choose good pivots (e.g., maxvol algorithm)
-
 
 
 ---
