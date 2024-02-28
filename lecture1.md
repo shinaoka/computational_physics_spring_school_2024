@@ -232,50 +232,38 @@ $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
 通常, 強くエンタングルしている同じ長さスケールの変数を隣同士に並べることが多い.
 
 ---
-# 演習問題
+# TT Unfolding
 
-$f(x) = e^{x}~(x\in [0, 1])$は, ボンド次元1のQTT表現を持つことを示してみましょう.
+![center width:1200px](fig/TT.png)
 
----
-
+### Natural tensor representation
+$\cN$変数の分離:
 $$
 f(x_1,...,x_\scN) \approx M_1(x_1)M_2(x_2)...M_\scN(x_\scN)
 $$
 
-
+### Quantics representation
+スケール間の分離
 
 ---
-# Quantics representation (2変数):
+# 演習問題: Natural tensor representation
 
-$f(x, y)$: $x \in [x_\mathrm{min}, x_\mathrm{max}], y\in [y_\mathrm{min}, y_\mathrm{max}]$
-
-等間隔2次元グリッド:
-
+以下の3変数関数がボンド1次元のTTで表現できることを示してみましょう.
 $$
-\begin{align}
-    m_x &= 0, 1, 2, \cdots, 2^\scR-1~(=M-1) \\
-    m_y &= 0, 1, 2, \cdots, 2^\scR-1~(=M-1) \\
-\end{align}
+f(x, y, z) = x y z
 $$
 
-2次元グリッドの図
 
 ---
-# Quantics tensor train (2変数):
+# 演習問題: Quantics representation (1)
 
-Binary coding: $m = (\sigma_1 \cdots \sigma_\scR)_2,~m' = (\sigma'_1 \cdots \sigma'_\scR)_2$
-
-1. Interleaved (交互的な) representation
-2. Fused (融合した) representation
-
-多くの物理系では, 同じような長さスケール間のエンタングルメントが強い $\rightarrow$ 近くに配置した方が良い.
+$f(x) = e^{x}~(x\in [0, 1])$は, ボンド次元1のQTT表現を持つことを示してみましょう.
 
 ---
-# 演習問題
+# 演習問題: Quantics representation (2)
 
 $f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めてみましょう.
 
-MPO表現の図. テンソルの表現を求めさせる
 
 
 
@@ -296,9 +284,20 @@ $f: \mathbb{R}^N \to \mathbb{C}, \quad f(i_1, i_2, \dots, i_R) = T[i_1, i_2, \cd
 ---
 # Example: Quantics + TCI for 1D function
 
+$$
+\begin{align}
+&f(x) = \cos\left(\frac{x}{B}\right) \cos\left(\frac{x}{4\sqrt{5}B}\right)  e^{-x^2} + 2e^{-x}~(B=2^{-30}),\nonumber\\
+& \int_0^{\ln (20)} \mathrm{d} x f(x) \approx \frac{19}{10} 
+\end{align}
+$$
 
----
-# Example: Fourier transform kernel
+8706 samples (1 sample per 59000 oscillations)
+
+![bg right width:500px](fig/oned_cosine_gaussian_outline.png)
+
+<center>
+<span style="font-size: 0.7em">Adapted from M. K. Ritter, Y. N. Fernández, M. Wallerberger, J. von Delft, H. Shinaoka, X. Waintal, PRL <b>132</b>, 056501 (2024).
+</center>
 
 
 ---
@@ -313,6 +312,12 @@ $f: \mathbb{R}^N \to \mathbb{C}, \quad f(i_1, i_2, \dots, i_R) = T[i_1, i_2, \cd
 
 ---
 # Matrix Cross Interpolation (MCI)
+
+![center width:1200px](fig/MCI.png)
+
+* Equality is exact on the selected columns and rows.
+* Heuristic algorithms for choose good pivots (e.g., maxvol algorithm)
+
 
 
 ---
