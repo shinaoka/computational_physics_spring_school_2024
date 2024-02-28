@@ -89,7 +89,7 @@ Tensor network representation learning for physics
 * 後半
    - Learning TNR: Tensor Cross Interpolation (TCI)
    - Computation with TNRs
-   - Juliaライブラリで実践してみる
+   - Juliaライブラリで実践してみる (30-60分ぐらいを予定)
 
 
 ---
@@ -100,7 +100,22 @@ Tensor network representation learning for physics
 - Julia予備知識: 初日の講義の寺崎さんの講義.
 
 ### 予習資料
-- 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号の2.1, 2.2章 [出版予定原稿](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
+- 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号、**2.1, 2.2章** [PDF](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
+
+---
+# ハンズオン準備
+
+ハンズオン参加希望者は, 講義までに以下の準備をお願いします.
+会場のインターネット回線経由でインストールしないこと！
+
+1. Juliaのインストール
+2. ライブラリのインストール, 以下のコマンドを実行 (PowerShell, Terminal等で実行)
+
+```julia
+julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url="git@gitlab.com:tensors4fields/tensors4fieldsregistry.git"))'
+julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "QuanticsGrids", "TCIITensorConversion", "Plots", "PythonPlot", "LaTeXStrings"])'
+````
+
 
 ---
 # 具体例
@@ -182,7 +197,7 @@ $i = a_1 \times \textcolor{red}{10^{\scR-1}} + \cdots + a_r \times \textcolor{re
 ---
 # 2進法
 
-底10が一般的なのは, 人間の指の数が10本だから.
+底10が一般的なのは, 手の指の数が10本だから.
 コンピュータの内部表現は2進数 (0, 1が電気信号のON, OFFと対応).
 
 $i = a_1 \times \textcolor{red}{2^{\scR-1}} + \cdots + a_r \times \textcolor{red}{2^{\scR-r}} + \cdots + a_\scR \times \textcolor{red}{2^0} = (a_1 a_2 \cdots a_\scR)_2$.
@@ -209,7 +224,7 @@ Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フ�
 
 ![center width:800px](fig/1dquantics.png)
 
-$2^\scR$の大きな脚を, $\cR$個の大きさ2の脚に分割!
+$2^\scR$の大きな足を, $\cR$個の大きさ2の足に分割!
 
 <!--
  $M=2^\cR$ ($m=0, 1, 2, \cdots, M-1$):
