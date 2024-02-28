@@ -236,18 +236,24 @@ $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
 通常, 強くエンタングルしている同じ長さスケールの変数を隣同士に並べることが多い.
 
 ---
-# TT Unfolding
+# TT Unfolding - natural tensor representation -
 
-![center width:1200px](fig/TT.png)
-
-### Natural tensor representation
 $\cN$変数の分離:
 $$
 f(x_1,...,x_\scN) \approx M_1(x_1)M_2(x_2)...M_\scN(x_\scN)
 $$
+<br>
 
-### Quantics representation
+![center width:1200px](fig/TT.png)
+
+---
+# TT Unfolding - quantics representation -
+
 スケール間の分離
+
+* 1変数
+* 2変数
+
 
 ---
 # TT形式での演算
