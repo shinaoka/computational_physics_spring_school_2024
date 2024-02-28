@@ -315,19 +315,14 @@ $$
 
 ![center width:1200px](fig/MCI.png)
 
-* Equality is exact on the selected columns and rows.
-* Equality becomes exact for an exact low-rank matrix.
-* Heuristic algorithms for choose good pivots (e.g., maxvol algorithm)
-
+* 選択された色付きの行と列で, 両辺の要素は必ず一致
+* ピボットの数 = 行列のランクの時は, 両辺は全体で一致
+* 良いピボットを選ぶヒューリスティックス法がある (e.g., maxvol algorithm).
 
 ---
-# TCIのコード例
+# MCIの動作
 
-関数コールだけでOK.
-
-$\cR$
-
-積分できるよ〜
+![center width:720px](fig/MCI_pivot_search.png)
 
 ---
 # 特異値によるテンソル分解とTCIの比較 (玄人向け)
