@@ -345,8 +345,16 @@ $\texttt{TensorCrossInterpolation.jl}$: LU分解に基づくピボット選択 +
 
 
 ---
-# 2次元Quantics TCIの例
+# フーリエ変換カーネルのQTCI
 
 何枚かのスライドを使って, QTTによる演算例を示す.
 $f(x, y) = e^{x + y}$の場合を考える.
 量子フーリエ変換の例も示す.
+
+
+---
+# Computation with TNRs
+
+* 要素積
+* 「行列積」
+* 量子フーリエ変換
