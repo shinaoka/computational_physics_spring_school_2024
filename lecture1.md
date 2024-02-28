@@ -8,6 +8,7 @@ paginate: true
 ---
 
 <style>
+
 section::after {
   content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
 }
@@ -249,6 +250,13 @@ $$
 スケール間の分離
 
 ---
+# TT形式での演算
+
+* Sum
+
+$\rightarrow$ もっと複雑な演算 (畳み込み積分, フーリエ変換)は後半の講義で紹介
+
+---
 # 演習問題: Natural tensor representation
 
 以下の3変数関数がボンド1次元のTTで表現できることを示してみましょう.
@@ -328,8 +336,8 @@ $$
 * **特徴** テンソル全体の要素を読み出し不要 (関数評価回数 $\propto \chi^2 \cL$)
 * **デメリット** ヒューリスティクスな手法, 一般的な関数に対しては, 成功の保証無
 
+TensorCrossInterpolation.jl: LU分解に基づくピボット選択 + グローバル探索
 
-$\texttt{TensorCrossInterpolation.jl}$: LU分解に基づくピボット選択 + グローバル探索
 
 ---
 # 特異値によるテンソル分解とTCIの比較 (玄人向け)
