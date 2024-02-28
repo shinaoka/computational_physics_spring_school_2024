@@ -57,6 +57,9 @@ $$
 \newcommand{\sigmaL}{\sigma_{\!\scL}}
 
 \def\bsigma{{\boldsymbol{\sigma}}} 
+\def\bx{{\boldsymbol{\mathrm{x}}}} 
+\def\sigmas{\sigma}
+
 $$
 
 Tensor network representation learning for physics
@@ -116,38 +119,52 @@ xfac論文から、綺麗な具体例をいくつか示す。
 
 
 ---
-# 関数をテンソルネットワーク化する2つの方法
+# 関数をテンソル化する2つの方法
 
-1. Natural representation
+1. Natural tensor representation
 1. Quantics representation
 
 
 
 ---
-# Natural representationとは
+# Natural tensor representationとは
 
-数ページ使って説明する
+$\cN$変数関数 ($\bx \in \mathbb{R}^\scN$):
+
+$$
+f\bigl(\bx(\bsigma)\bigr) = f\bigl(x_1(\sigmas_1), \cdots, x_\scL (\sigmas_\scL)\bigr)=
+$$
+
+![center width:500px](fig/fnatural.png)
+
+離散グリッド:
+$$
+x_1: \{x_1(1), \cdots, x_1(d_1)\}, \cdots,
+x_\scN: \{x_\scN(1), \cdots, x_\scN(d_\scN)\}
+$$
+
+ここで, $d_\ell$は, $\ell$番目の変数に対する離散化グリッドの大きさ.
+
+**欠点**: 局所構造や, 桁違いに違う長さスケールが共存 $\rightarrow$ $d_\ell$が増大
 
 ---
 # Quantics representation
 
-少数変数, 桁違いに違う長さスケールがある場合に有効
+桁違いに違う長さスケールが共存に有効. 
+
+**アイデア**: 離散グリッドのインデックスをさらに「量子化」(quantics)する.
 
 ---
-# そもそも10進法ってなに？
-
-Wikipedia: 「十進法（じっしんほう、（英: decimal system）とは、十を底（てい）とし、底およびその冪を基準にして数を表す方法である。」
-
----
-# 10進法の例
+# 10進法
 
 例えば, 3桁の非負整数を考えてみよう ($\mathscr{R}=3$):
-$i = 0, 1, 2, \cdots, 10, 11, \cdots, 100, 101, \cdots, 999.$
+$i = 000, 001, 002, \cdots, 010, 011, \cdots, 100, 101, \cdots, 999.$
 
 1つの数字を異なる桁を表す複数の数字の組で表現する.
 $i = a_1 \times \textcolor{red}{10^2} + a_2 \times \textcolor{red}{10^1} + a_3 \times \textcolor{red}{10^0} = (a_1 a_2 a_3)_{10}$.
 
-ただし, $a_r \in \{0, 1, \cdots, 9\}$.
+ただし, $a_r \in \{0, 1, \cdots, 9\}$
+
 
 ---
 # なぜ10進法が便利なのか？
@@ -156,7 +173,7 @@ $i = a_1 \times \textcolor{red}{10^2} + a_2 \times \textcolor{red}{10^1} + a_3 \
 
 $i = a_1 \times \textcolor{red}{10^{\scR-1}} + \cdots + a_r \times \textcolor{red}{10^{\scR-r}} + \cdots + a_\scR \times \textcolor{red}{10^0} = (a_1 a_2 \cdots a_\scR)_{10}$.
 
-
+**注目点** 底10と同じ数だけの文字があれば良い！
 
 ---
 # 2進法
@@ -175,20 +192,24 @@ Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フ�
 ---
 # Quantics representation (1変数)[1]
 
-関数: $f(x),~x \in [x_\mathrm{min}, x_\mathrm{max}]$を考える。
+関数: $f(x),~x \in [x_\mathrm{min}, x_\mathrm{max}]$
 
-大きさ$M=2^\scR$の等間隔グリッド:
+等間隔グリッド (大きさ$M=2^\scR$) 上で離散化:
 
-$$
-\{x_\mathrm{min} + \delta \times m: m=0, 1, \cdots, M-1\},~\delta \equiv (x_\mathrm{max} - x_\mathrm{min})/M
-$$
 
-関数$f(x)$は, 大きさ$2^\scR$の1次元データ $F_m$に離散化
+![center width:800px](fig/1dgrid.png)
 
-ここに図
+---
+# Quantics representation (1変数)[2]
+
+
+![center width:800px](fig/1dquantics.png)
+
+$2^\scR$の大きな脚を, $\cR$個の大きさ2の脚に分割!
 
 <!--
  $M=2^\cR$ ($m=0, 1, 2, \cdots, M-1$):
+関数$f(x)$は, 大きさ$2^\scR$の1次元データ $F_m$に離散化
 
 $$
 m(\bsigma) = m(\sigma_1, \sigma_2, \cdots, \sigma_\scR) = \sum_{r=1}^\scR \sigma_r 2^{\scR -r } = (\sigma_1 \cdots \sigma_\scR)_2.
@@ -202,34 +223,26 @@ $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
 -->
 
 ---
-# Quantics representation (1変数)[2]
+# Quantics representation ($\cN$変数)
 
-$m~(=0, 1, \cdots, 2^\scR-1)$を2進数表示:
+各変数を$(2^\scR)$個に離散化 $\rightarrow$ $n$番目変数の量子化: $m_n = (\sigma_{n1} \cdots \sigma_{n \scR})_2$
 
-$$
-m = \sum_{r=1}^\scR \sigma_r 2^{\scR -r } = (\sigma_1 \cdots \sigma_\scR)_2.
-$$
+![center width:1200px](fig/quantics2.png)
 
-関数は, $\cR$個の脚を持つテンソルとして見なせる:
-
-$$
-F_\bsigma \equiv f(x_\mathrm{min} + \delta \times m)
-$$
-
-ここに図
-
----
-# Quantics tensor networks (1変数)
-
-
-図
-
-トポロジー, 脚の順番には任意性がある!
+通常, 強くエンタングルしている同じ長さスケールの変数を隣同士に並べることが多い.
 
 ---
 # 演習問題
 
 $f(x) = e^{x}~(x\in [0, 1])$は, ボンド次元1のQTT表現を持つことを示してみましょう.
+
+---
+
+$$
+f(x_1,...,x_\scN) \approx M_1(x_1)M_2(x_2)...M_\scN(x_\scN)
+$$
+
+
 
 ---
 # Quantics representation (2変数):
