@@ -92,11 +92,14 @@ Tensor network representation learning for physics
 
 
 ---
-# 予習資料
+# 参考資料
 
+### 事前知識
 - テンソルネットワーク: [昨年の大久保さんの講義の最初30分](https://www.youtube.com/watch?v=i2wsatfsogI)
-- Quantics Tensor Train: [日本物理学会誌の記事]()
-- Julia予備知識: 初日の講義の寺崎さんの講義で紹介します.
+- Julia予備知識: 初日の講義の寺崎さんの講義.
+
+### 予習資料
+- 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号の2.1, 2.2章 [出版予定原稿](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
 
 ---
 # 具体例
@@ -282,7 +285,7 @@ $N$次元テンソル$T$も関数と見なせる:
 $f: \mathbb{R}^N \to \mathbb{C}, \quad f(i_1, i_2, \dots, i_R) = T[i_1, i_2, \cdots, i_R]$
 
 ---
-# Example: Quantics + TCI for 1D function
+# Example
 
 $$
 \begin{align}
@@ -300,15 +303,6 @@ $$
 </center>
 
 
----
-# Tensor Cross Interpolation (TCI) in a nutshell
-
-テンソルの要素を適応的に探索し, 低ランクTT表現を求める. 
-
-* **必要条件**  指定されたインデックスでのテンソルの値が計算可能 $f: \mathbb{R}^N \to \mathbb{C}$
-* **特徴** テンソル全体の要素を読み出し不要
-* **デメリット** ヒューリスティクスな手法, 一般的な関数に対しては, 成功の保証無
-
 
 ---
 # Matrix Cross Interpolation (MCI)
@@ -317,12 +311,25 @@ $$
 
 * 選択された色付きの行と列で, 両辺の要素は必ず一致
 * ピボットの数 = 行列のランクの時は, 両辺は全体で一致
-* 良いピボットを選ぶヒューリスティックス法がある (e.g., maxvol algorithm).
+* 良いピボットを選ぶヒューリスティックス法 (e.g., maxvol algorithm)
 
 ---
 # MCIの動作
 
 ![center width:720px](fig/MCI_pivot_search.png)
+
+
+---
+# Tensor Cross Interpolation (TCI) in a nutshell
+
+テンソルの要素を適応的に探索し, 低ランクTT表現を求める. 
+
+* **必要条件**  指定されたインデックスでのテンソルの値が計算可能 $f: \mathbb{R}^N \to \mathbb{C}$
+* **特徴** テンソル全体の要素を読み出し不要 (関数評価回数 $\propto \chi^2 \cL$)
+* **デメリット** ヒューリスティクスな手法, 一般的な関数に対しては, 成功の保証無
+
+
+$\texttt{TensorCrossInterpolation.jl}$: LU分解に基づくピボット選択 + グローバル探索
 
 ---
 # 特異値によるテンソル分解とTCIの比較 (玄人向け)
@@ -338,7 +345,7 @@ $$
 
 
 ---
-# QTTによる演算例
+# 2次元Quantics TCIの例
 
 何枚かのスライドを使って, QTTによる演算例を示す.
 $f(x, y) = e^{x + y}$の場合を考える.
