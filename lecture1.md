@@ -251,31 +251,37 @@ $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
 通常, 強くエンタングルしている同じ長さスケールの変数を隣同士に並べることが多い.
 
 ---
-# TT Unfolding - natural tensor representation -
+# TT unfolding - natural tensor representation -
 
-$\cN$変数の分離:
-$$
-f(x_1,...,x_\scN) \approx M_1(x_1)M_2(x_2)...M_\scN(x_\scN)
-$$
-<br>
+$\cN$変数の分離に対応: $f(x_1,...,x_\scN) \approx M_1(x_1)M_2(x_2)...M_\scN(x_\scN)$
 
 ![center width:1200px](fig/TT.png)
 
----
-# TT Unfolding - quantics representation -
+<br>
 
-スケール間の分離
-
-* 1変数
-* 2変数
-
+Superfast summation: $\int \! d^{\scN} \bx f(\bx) \approx  \int dx_1\ M_1(x_1) \int dx_2\  M_2(x_2)... \int dx_\scN\  M_\scN(x_\scN).$
 
 ---
-# TT形式での演算
+# TT unfolding - quantics representation -
 
-* Sum
+異なるスケール間の分離に対応
 
-$\rightarrow$ もっと複雑な演算 (畳み込み積分, フーリエ変換)は後半の講義で紹介
+![center width:900px](fig/schematic_QTT.png)
+
+
+---
+# Superfast integration in QTT
+
+積分: $\int dx f(x) \approx 2^{-\scR} (\sum_{\sigma_1} M(\sigma_1)) ... (\sum_{\sigma_\scR} M(\sigma_\scR)) + O(2^{-2\scR})$
+
+<br>
+
+![center width:1100px](fig/TTsum.png)
+$\cR$に対して線形な演算量 $O(\chi^2 \cR)$, 指数的に小さい離散化誤差
+
+<br>
+
+複雑な演算 (畳み込み積分, フーリエ変換)は後半の講義で紹介
 
 ---
 # 演習問題: Natural tensor representation
