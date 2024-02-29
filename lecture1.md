@@ -112,6 +112,7 @@ Tensor network representation learning for physics
 2. ライブラリのインストール, 以下のコマンドを実行 (PowerShell, Terminal等で実行)
 
 ```julia
+julia -e 'using Pkg; Pkg.add(["Example"])'
 julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url="git@gitlab.com:tensors4fields/tensors4fieldsregistry.git"))'
 julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "QuanticsGrids", "TCIITensorConversion", "Plots", "PythonPlot", "LaTeXStrings"])'
 ````
@@ -268,18 +269,17 @@ Superfast summation: $\int \! d^{\scN} \bx f(\bx) \approx  \int dx_1\ M_1(x_1) \
 
 ![center width:900px](fig/schematic_QTT.png)
 
-
----
-# Superfast integration in QTT
-
 積分: $\int dx f(x) \approx 2^{-\scR} (\sum_{\sigma_1} M(\sigma_1)) ... (\sum_{\sigma_\scR} M(\sigma_\scR)) + O(2^{-2\scR})$
 
-<br>
-
-![center width:1100px](fig/TTsum.png)
+![center width:900px](fig/TTsum.png)
 $\cR$に対して線形な演算量 $O(\chi^2 \cR)$, 指数的に小さい離散化誤差
 
-<br>
+---
+# Superfast computation in QTT
+
+Tensor Train Operator (TTO):
+
+![center width:1100px](fig/schematic_QTTO.png)
 
 複雑な演算 (畳み込み積分, フーリエ変換)は後半の講義で紹介
 
