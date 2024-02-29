@@ -103,6 +103,12 @@ Tensor network representation learning for physics
 - 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号、**2.1, 2.2章** [PDF](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
 
 ---
+# より詳しい資料
+
+* QTT: [B. N. Khoromskij, Tensor Numerical Methods in Scientific Computing](https://www.amazon.co.jp/dp/3110370131?ref_=cm_sw_r_cp_ud_dp_C1N79TD92FAJKEQEMXEN)
+* C++/Python/Juliaライブラリ、TCIの新しいアルゴリズム (self-contained): Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.
+
+---
 # ハンズオン準備
 
 ハンズオン参加希望者は, 講義までに以下の準備をお願いします.
