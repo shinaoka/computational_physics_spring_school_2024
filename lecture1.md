@@ -61,6 +61,9 @@ $$
 \def\bx{{\boldsymbol{\mathrm{x}}}} 
 \def\sigmas{\sigma}
 
+\newcommand{\FT}{{\scriptscriptstyle \mathrm{FT}}}
+\newcommand{\hf}{f^\FT}   %Fourier transform of \bff
+\newcommand{\hF}{F^\FT}
 $$
 
 Tensor network representation learning for physics
@@ -74,7 +77,7 @@ Tensor network representation learning for physics
 
 
 <center>
-<span style="font-size: 0.8em">This lecture is based on Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
+<span style="font-size: 0.9em; color: red">This lecture is based on Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
 </center>
 
 ---
@@ -386,16 +389,52 @@ TensorCrossInterpolation.jl: LU分解に基づくピボット選択 + グロー�
 
 
 ---
-# フーリエ変換カーネルのQTCI
+# フーリエ変換カーネル
 
-何枚かのスライドを使って, QTTによる演算例を示す.
-$f(x, y) = e^{x + y}$の場合を考える.
-量子フーリエ変換の例も示す.
+$$
+\hf_k = \sum_{m=0}^{M-1}   T_{km} f_m , \qquad 
+T_{km} =  \tfrac{1}{\sqrt{M}}  e^{- i 2 \pi k \cdot m /M}
+$$
+$$
+m(\bsigma) = (\sigma_1 \cdots \sigma_\scR)_2,~k(\bsigma') = (\sigma_1' \cdots \sigma_\scR')_2
+$$
+![center width:900px](fig/schematic_qft_before_unfolding.png)
+![center width:900px](fig/schematic_qft.png)
 
+変換前後でインデックスが逆順で低ランク [Woolfe2017](https://www.rintonpress.com/journals/doi/QIC17.1-2-1.html), [Shinaoka2024](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.13.021015), [Chen2024](https://doi.org/10.1103/PRXQuantum.4.040318)
 
 ---
-# Computation with TNRs
+# フーリエ変換カーネルのQTCI
 
-* 要素積
-* 「行列積」
-* 量子フーリエ変換
+![center width:900px](fig/qft-bonddimensions.png)
+
+<center>
+<span style="font-size: 0.8em">Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
+</center>
+
+QTCI経由では無く, 量子フーリエ変換の量子回路経由で作ることも出来ます.
+
+---
+# Computation with quantics
+
+* 行列積: $C(x, x'') = \int \mathrm{d}x' A(x, x') B(x', x'')$
+* フーリエ変換
+* 畳み込み (=要素積＋フーリエ変換)
+* 要素積: $h(x) = f(x) g(x)$をQTCI推定する.
+
+$\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラリ).
+
+---
+# Summary
+
+* Natural tensor representation and quantics reprensentation
+* Tensor cross interpolation = adaptive learning algorithm for tensor train
+* Various future applications
+  -  Quantum field theories
+  -  Ab initio calculaitons
+  - ...
+* Open-source implementation
+  - C++/Python: $\texttt{xfac}$
+  - Julia: $\texttt{TensorCrossInterpolation.jl}$ 最後に少し紹介します！
+
+(Q)TCIを使って, 低ランクなデータを探してみよう!
