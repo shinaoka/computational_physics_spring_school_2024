@@ -124,7 +124,7 @@ tensor4all・月例Zoomミーティング開催中 (ヨーロッパ・日本・�
 
 ```julia
 julia -e 'using Pkg; Pkg.add(["Example"])'
-julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url="git@gitlab.com:tensors4fields/tensors4fieldsregistry.git"))'
+julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url="https://gitlab.com/tensors4fields/tensors4fieldsregistry.git"))'
 julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "QuanticsGrids", "TCIITensorConversion", "Plots", "PythonPlot", "LaTeXStrings"])'
 ````
 
