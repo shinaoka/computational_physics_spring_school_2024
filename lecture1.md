@@ -105,6 +105,8 @@ Tensor network representation learning for physics
 ### 予習資料
 - 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号、**2.1, 2.2章** [PDF](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
 
+tensor4all・月例Zoomミーティング開催中 (ヨーロッパ・日本・アメリカ). 興味ある方は品岡まで!
+
 ---
 # より詳しい資料
 
@@ -128,10 +130,9 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 
 
 ---
-# 具体例
+# tensor4all
 
-xfac論文から、綺麗な具体例をいくつか示す。
-流体、場の量子論の図も見せて、モチベートする。
+![bg width:1000px](fig/tensor4all.png)
 
 ---
 # テンソルネットワークとは？ (復習)
@@ -425,16 +426,13 @@ QTCI経由では無く, 量子フーリエ変換の量子回路経由で作る�
 $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラリ).
 
 ---
-# Summary
+# まとめ
 
 * Natural tensor representation and quantics reprensentation
 * Tensor cross interpolation = adaptive learning algorithm for tensor train
-* Various future applications
-  -  Quantum field theories
-  -  Ab initio calculaitons
-  - ...
+* Various future applications: quantum field theories, ab initio calculaitons, ...
 * Open-source implementation
   - C++/Python: $\texttt{xfac}$
-  - Julia: $\texttt{TensorCrossInterpolation.jl}$ 最後に少し紹介します！
+  - Julia: $\texttt{TensorCrossInterpolation.jl}$など 最後に少し紹介します！
 
 (Q)TCIを使って, 低ランクなデータを探してみよう!
