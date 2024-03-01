@@ -110,8 +110,13 @@ tensor4all・月例Zoomミーティング開催中 (ヨーロッパ・日本・�
 ---
 # より詳しい資料
 
+### レビュ
 * QTT: [B. N. Khoromskij, Tensor Numerical Methods in Scientific Computing](https://www.amazon.co.jp/dp/3110370131?ref_=cm_sw_r_cp_ud_dp_C1N79TD92FAJKEQEMXEN)
-* C++/Python/Juliaライブラリ、TCIの新しいアルゴリズム (self-contained): Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.
+* C++/Python/Juliaライブラリ、TCIの新しいアルゴリズム (self-contained style): Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.
+
+### 論文
+* H. Shinaoka, M. Wallerberger, Y. Murakami, K. Nogaki, R. Sakurai, P. Werner, and A. Kauch, Phys. Rev. X **13**, 021015 (2023).
+* M. K. Ritter, Y. N. Fernández, M. Wallerberger, J. von Delft, H. Shinaoka, X. Waintal, PRL **132**, 056501 (2024).
 
 ---
 # ハンズオン準備
@@ -183,6 +188,8 @@ $$
 桁違いに違う長さスケールが共存に有効. 
 
 **アイデア**: 離散グリッドのインデックスをさらに「量子化」(quantics)する.
+
+I. V. Oseledets, Doklady Math. **80**, 653 (2009), B. N. Khoromskij, Constr. Approx. **34**, 257 (2011)
 
 ---
 # 10進法
@@ -357,6 +364,7 @@ $$
 * 選択された色付きの行と列で, 両辺の要素は必ず一致
 * ピボットの数 = 行列のランクの時は, 両辺は全体で一致
 * 良いピボットを選ぶヒューリスティックス法 (e.g., maxvol algorithm)
+  - $\texttt{TensorCrossInterpolation.jl}$: LU分解によるピボット選択 + グローバル探索
 
 ---
 # MCIの動作
@@ -372,8 +380,10 @@ $$
 * **必要条件**  指定されたインデックスでのテンソルの値が計算可能 $f: \mathbb{R}^N \to \mathbb{C}$
 * **特徴** テンソル全体の要素を読み出し不要 (関数評価回数 $\propto \chi^2 \cL$)
 * **デメリット** ヒューリスティクスな手法, 一般的な関数に対しては, 成功の保証無
+* **機械学習との関係**
+  - 能動学習 (active learning)の一種
+  - 構造化されたモデルを使う $\rightarrow$ 構築後の計算が効率的 (e.g.,積分, フーリエ変換)
 
-TensorCrossInterpolation.jl: LU分解に基づくピボット選択 + グローバル探索
 
 
 ---
@@ -413,7 +423,7 @@ $$
 <span style="font-size: 0.8em">Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
 </center>
 
-QTCI経由では無く, 量子フーリエ変換の量子回路経由で作ることも出来ます.
+QTCI経由では無く, 量子フーリエ変換の量子回路経由で作ることも出来ます [Chen2024](https://doi.org/10.1103/PRXQuantum.4.040318).
 
 ---
 # Computation with quantics
@@ -424,6 +434,13 @@ QTCI経由では無く, 量子フーリエ変換の量子回路経由で作る�
 * 要素積: $h(x) = f(x) g(x)$をQTCI推定する.
 
 $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラリ).
+
+---
+# 低ランク構造どう探すか？: フローチャート
+
+低ランク構造があるかどうかは, 一般的には難しい.
+
+データ・関数 $\rightarrow$ (Quantics) TCI $\rightarrow$ 低ランク $\rightarrow$ 圧縮・計算が効率化できる？ ($\rightarrow$ 低ランクではない $\rightarrow$ 表現・基底を変える or 諦める)
 
 ---
 # まとめ
