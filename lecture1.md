@@ -105,7 +105,10 @@ Tensor network representation learning for physics
 ### 予習資料
 - 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号、**2.1, 2.2章** [PDF](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
 
-tensor4all・月例Zoomミーティング開催中 (ヨーロッパ・日本・アメリカ). 興味ある方は品岡まで!
+
+### ハンズオン資料
+- (作成中) [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
+- (作成中) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
 
 ---
 # より詳しい資料
@@ -138,6 +141,15 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 # tensor4all
 
 ![bg width:1000px](fig/tensor4all.png)
+
+---
+# Quantics tensor train (QTT)
+
+Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
+
+![width:1200px](fig/2D_quantics_zoom.png)
+
+Tensor cross interpolation (TCI) can learn such a low-rank tensor network representation of a function.
 
 ---
 # テンソルネットワークとは？ (復習)
