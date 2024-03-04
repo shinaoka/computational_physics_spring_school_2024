@@ -182,7 +182,7 @@ $$
   
 ### ノルム$\| \cdots \|$の選択
 * フロベニウスノルム $\|\bx\|_\mathrm{F} = \sqrt{\sum_i|x_i|^2}$ $\rightarrow$ 特異値分解＋打ち切りが最適
-* 最大値ノルム $\|\bx\|_\mathrm{max} = \max_i |x_i|$ $\rightarrow$ LU分解が使える (後述のTCIのバックエンド)
+* 最大値ノルム $\|\bx\|_\mathrm{max} = \max_i |x_i|$ $\rightarrow$ rank-revealing LU分解が使える (後述のTCIのバックエンド)
 
 ---
 # テンソルネットワークとは？ (復習)
