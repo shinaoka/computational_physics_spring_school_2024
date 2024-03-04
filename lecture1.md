@@ -486,7 +486,7 @@ $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラ�
 データ・関数 $\rightarrow$ (Quantics) TCI $\rightarrow$ 低ランク $\rightarrow$ 圧縮・計算が効率化できる？ ($\rightarrow$ 低ランクではない $\rightarrow$ 表現・基底を変える or 諦める)
 
 ---
-# まとめ
+# 講義パートのまとめ
 
 * Natural tensor representation and quantics reprensentation
 * Tensor cross interpolation = adaptive learning algorithm for tensor train
@@ -496,3 +496,32 @@ $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラ�
   - Julia: $\texttt{TensorCrossInterpolation.jl}$など 最後に少し紹介します！
 
 (Q)TCIを使って, 低ランクなデータを探してみよう!
+
+
+---
+# $\texttt{xfac}$/ $\texttt{TensorCrossInterpolation.jl}$の紹介
+
+<center>
+<span style="font-size: 0.9em; color: red">Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
+近日publicになるはず.
+</center>
+
+$\texttt{xfac}$: こっちがoriginal. 主開発者はY. N. Fernández.
+
+* $\texttt{C++}$ライブラリ
+* 一部機能は, $\texttt{Python}$から呼び出せる.
+
+$\texttt{TensorCrossInterpolation.jl}$: 主開発者は, **M. K. Ritter** & H. Shinaoka.
+
+* Juliaによる実装
+* 複数のJuliaライブラリ ($\texttt{QuanticsTCI.jl}$, $\texttt{QuanticsGrids.jl}$...)と連携
+* $\texttt{ITensors.jl}$と連携可 (TCIからITensors.MPS/MPOへの変換など)
+
+---
+# 今回はハンズオン
+
+
+今回は, インストールが簡単なJuliaライブラリ群を使います。
+
+- (作成中) [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
+- (作成中) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
