@@ -96,13 +96,18 @@ Tensor network representation learning for physics
 
 
 ---
-# 参考資料
+# 予習資料
 
-### 事前知識
+講義は以下の予習資料を前提として進めます.
+
 - テンソルネットワーク: [昨年の大久保さんの講義の最初30分](https://www.youtube.com/watch?v=i2wsatfsogI)
-- Julia予備知識: 初日の講義の寺崎さんの講義.
+- [特異値分解 (singular value decomposition, SVD)](https://ja.wikipedia.org/wiki/特異値分解)
+- (ハンズオン参加希望者) Julia予備知識: 初日の講義の寺崎さんの講義.
 
-### 予習資料
+---
+# 参考資料
+以下の資料は予習には必要ありませんが, 興味がある方は参考にしてください.
+
 - 「Quantics tensor train に基づく多スケール時空仮説と場の量子論」、品岡寛、村上雄太、野垣康介、櫻井理人、日本物理学会誌2024年2月号、**2.1, 2.2章** [PDF](https://shinaoka.github.io/assets/qtt_jps_202402.pdf)
 
 
@@ -152,6 +157,23 @@ Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid (
 Tensor cross interpolation (TCI) can learn such a low-rank tensor network representation of a function.
 
 ---
+# Low-rank approximation of a matrix
+
+行列$A$のランク$\mathrm{rank}(A)$の定義:
+
+* $A$の$r$個の行/列ベクトルが線形独立 $\rightarrow$ $\mathrm{rank}(A)$ = $r$
+* $A = U \Sigma V^T$ (SVD) $\rightarrow$ $\mathrm{rank}(A)$ = $\mathrm{rank}(\Sigma)$=非0の特異値の数
+
+行列の低ランク構造 $r$によって, $A$を次のようにSVDできる:
+$$
+A = U \Sigma V^T \approx \sum_{i=1}^r \sigma_i u_i v_i^T.
+$$
+
+SVDの他に, QR分解, LU分解などがある.
+  
+テンソルに低ランク構造がある場合, 低ランク表現を利用することができる.
+
+---
 # テンソルネットワークとは？ (復習)
 <center>
 <span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
@@ -161,9 +183,7 @@ Tensor cross interpolation (TCI) can learn such a low-rank tensor network repres
 ![center height:450px bottom](fig/standardTTtoolboxXavierVersion.png)
 
 ---
-
----
-
+# Black page for drawing
 
 ---
 # 関数をテンソル化する2つの方法
