@@ -123,7 +123,7 @@ Tensor network representation learning for physics
 * C++/Python/Juliaライブラリ、TCIの新しいアルゴリズム (self-contained style): Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.
 
 ### 論文
-* H. Shinaoka, M. Wallerberger, Y. Murakami, K. Nogaki, R. Sakurai, P. Werner, and A. Kauch, Phys. Rev. X **13**, 021015 (2023).
+* H. Shinaoka, M. Wallerberger, Y. Murakami, K. Nogaki, R. Sakurai, P. Werner, and A. Kauch, PRX **13**, 021015 (2023).
 * M. K. Ritter, Y. N. Fernández, M. Wallerberger, J. von Delft, H. Shinaoka, X. Waintal, PRL **132**, 056501 (2024).
 
 ---
@@ -170,8 +170,19 @@ A = U \Sigma V^T \approx \sum_{i=1}^r \sigma_i u_i v_i^T.
 $$
 
 SVDの他に, QR分解, LU分解などがある.
+
+---
+# Low-rank approximation of a matrix (2)
+
+### 行列$A$のランク$r$の低ランク近似
+
+$$
+\text{minimize}_{B} \|A - B\| \quad \text{subject to} \quad \text{rank}(B) = r.
+$$
   
-テンソルに低ランク構造がある場合, 低ランク表現を利用することができる.
+### ノルム$\| \cdots \|$の選択
+* フロベニウスノルム $\|\bx\|_\mathrm{F} = \sqrt{\sum_i|x_i|^2}$ $\rightarrow$ 特異値分解＋打ち切りが最適
+* 最大値ノルム $\|\bx\|_\mathrm{max} = \max_i |x_i|$ $\rightarrow$ LU分解が使える (後述のTCIのバックエンド)
 
 ---
 # テンソルネットワークとは？ (復習)
