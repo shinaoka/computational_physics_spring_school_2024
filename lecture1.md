@@ -152,9 +152,11 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 
 Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
 
-![width:1200px](fig/2D_quantics_zoom.png)
+QTT 表現: 指数的解像度、不連続性もOK
 
-Tensor cross interpolation (TCI) can learn such a low-rank tensor network representation of a function.
+![width:1000px](fig/2D_quantics_zoom.png)
+
+Tensor cross interpolation (TCI) は関数中の低ランク構造を探す「能動学習」アルゴリズムの一種.
 
 ---
 # Low-rank approximation of a matrix
