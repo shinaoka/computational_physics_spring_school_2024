@@ -118,11 +118,8 @@ Tensor network representation learning for physics
 ---
 # より詳しい資料
 
-### レビュ
 * QTT: [B. N. Khoromskij, Tensor Numerical Methods in Scientific Computing](https://www.amazon.co.jp/dp/3110370131?ref_=cm_sw_r_cp_ud_dp_C1N79TD92FAJKEQEMXEN)
 * C++/Python/Juliaライブラリ、TCIの新しいアルゴリズム (self-contained style): Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.
-
-### 論文
 * H. Shinaoka, M. Wallerberger, Y. Murakami, K. Nogaki, R. Sakurai, P. Werner, and A. Kauch, PRX **13**, 021015 (2023).
 * M. K. Ritter, Y. N. Fernández, M. Wallerberger, J. von Delft, H. Shinaoka, X. Waintal, PRL **132**, 056501 (2024).
 
@@ -145,7 +142,7 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 ---
 # tensor4all
 
-![bg width:1000px](fig/tensor4all.png)
+![bg width:1000px](fig/tensor4all.svg)
 
 ---
 # Quantics tensor train (QTT)
@@ -159,7 +156,20 @@ QTT 表現: 指数的解像度、不連続性もOK
 Tensor cross interpolation (TCI) は関数中の低ランク構造を探す「能動学習」アルゴリズムの一種.
 
 ---
-# Low-rank approximation of a matrix
+# テンソルネットワークとは？ (復習)
+<center>
+<span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
+</center>
+
+
+![center height:450px bottom](fig/standardTTtoolboxXavierVersion.svg)
+
+---
+# Black page for drawing
+
+
+---
+# (復習用資料) Rank of a matrix
 
 行列$A$のランク$\mathrm{rank}(A)$の定義:
 
@@ -174,29 +184,17 @@ $$
 SVDの他に, QR分解, LU分解などがある.
 
 ---
-# Low-rank approximation of a matrix (2)
+# (復習用資料) Low-rank approximation of a matrix
 
-### 行列$A$のランク$r$の低ランク近似
-
+### 定義
 $$
-\text{minimize}_{B} \|A - B\| \quad \text{subject to} \quad \text{rank}(B) = r.
+\text{minimize}_{\tilde A} \|A - \tilde A\| \quad \text{subject to} \quad \text{rank}(\tilde A) = r' < r~(\equiv \mathrm{rank}(A)).
 $$
   
 ### ノルム$\| \cdots \|$の選択
-* フロベニウスノルム $\|\bx\|_\mathrm{F} = \sqrt{\sum_i|x_i|^2}$ $\rightarrow$ 特異値分解＋打ち切りが最適
-* 最大値ノルム $\|\bx\|_\mathrm{max} = \max_i |x_i|$ $\rightarrow$ rank-revealing LU分解が使える (後述のTCIのバックエンド)
+* フロベニウスノルム $\|B\|_\mathrm{F} = \sqrt{\sum_{ij}|B_{ij}|^2}$ $\rightarrow$ 特異値分解＋打ち切りが最適
+* 最大値ノルム $\|B\|_\mathrm{max} = \max_{ij} |B_{ij}|$ $\rightarrow$ rank-revealing LU分解が使える (後述のTCIのバックエンド)
 
----
-# テンソルネットワークとは？ (復習)
-<center>
-<span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
-</center>
-
-
-![center height:450px bottom](fig/standardTTtoolboxXavierVersion.png)
-
----
-# Black page for drawing
 
 ---
 # 関数をテンソル化する2つの方法
@@ -215,7 +213,7 @@ $$
 f\bigl(\bx(\bsigma)\bigr) = f\bigl(x_1(\sigmas_1), \cdots, x_\scL (\sigmas_\scL)\bigr)=
 $$
 
-![center width:500px](fig/fnatural.png)
+![center width:500px](fig/fnatural.svg)
 
 離散グリッド:
 $$
@@ -279,13 +277,13 @@ Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フ�
 等間隔グリッド (大きさ$M=2^\scR$) 上で離散化:
 
 
-![center width:800px](fig/1dgrid.png)
+![center width:800px](fig/1dgrid.svg)
 
 ---
 # Quantics representation (1変数)[2]
 
 
-![center width:800px](fig/1dquantics.png)
+![center width:800px](fig/1dquantics.svg)
 
 $2^\scR$の大きな足を, $\cR$個の大きさ2の足に分割!
 
@@ -309,7 +307,7 @@ $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
 
 各変数を$(2^\scR)$個に離散化 $\rightarrow$ $n$番目変数の量子化: $m_n = (\sigma_{n1} \cdots \sigma_{n \scR})_2$
 
-![center width:1200px](fig/quantics2.png)
+![center width:1200px](fig/quantics2.svg)
 
 通常, 強くエンタングルしている同じ長さスケールの変数を隣同士に並べることが多い.
 
@@ -318,7 +316,7 @@ $\cR$個の小さな変数$\sigma_r~\in \{0, 1\}$を使う.
 
 $\cN$変数の分離に対応: $f(x_1,...,x_\scN) \approx M_1(x_1)M_2(x_2)...M_\scN(x_\scN)$
 
-![center width:1200px](fig/TT.png)
+![center width:1200px](fig/TT.svg)
 
 <br>
 
@@ -329,11 +327,11 @@ Superfast summation: $\int \! d^{\scN} \bx f(\bx) \approx  \int dx_1\ M_1(x_1) \
 
 異なるスケール間の分離に対応
 
-![center width:900px](fig/schematic_QTT.png)
+![center width:900px](fig/schematic_QTT.svg)
 
 積分: $\int dx f(x) \approx 2^{-\scR} (\sum_{\sigma_1} M(\sigma_1)) ... (\sum_{\sigma_\scR} M(\sigma_\scR)) + O(2^{-2\scR})$
 
-![center width:900px](fig/TTsum.png)
+![center width:900px](fig/TTsum.svg)
 $\cR$に対して線形な演算量 $O(\chi^2 \cR)$, 指数的に小さい離散化誤差
 
 ---
@@ -341,7 +339,7 @@ $\cR$に対して線形な演算量 $O(\chi^2 \cR)$, 指数的に小さい離散
 
 Tensor Train Operator (TTO):
 
-![center width:1100px](fig/schematic_QTTO.png)
+![center width:1100px](fig/schematic_QTTO.svg)
 
 複雑な演算 (畳み込み積分, フーリエ変換)は後半の講義で紹介
 
@@ -393,7 +391,7 @@ $$
 
 8706 samples (1 sample per 59000 oscillations)
 
-![bg right width:500px](fig/oned_cosine_gaussian_outline.png)
+![bg right width:500px](fig/oned_cosine_gaussian_outline.svg)
 
 <center>
 <span style="font-size: 0.7em">Adapted from M. K. Ritter, Y. N. Fernández, M. Wallerberger, J. von Delft, H. Shinaoka, X. Waintal, PRL <b>132</b>, 056501 (2024).
@@ -404,7 +402,7 @@ $$
 ---
 # Matrix Cross Interpolation (MCI)
 
-![center width:1200px](fig/MCI.png)
+![center width:1200px](fig/MCI.svg)
 
 * 選択された色付きの行と列で, 両辺の要素は必ず一致
 * ピボットの数 = 行列のランクの時は, 両辺は全体で一致
@@ -414,7 +412,7 @@ $$
 ---
 # MCIの動作
 
-![center width:720px](fig/MCI_pivot_search.png)
+![center width:720px](fig/MCI_pivot_search.svg)
 
 
 ---
