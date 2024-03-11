@@ -145,11 +145,62 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 ![bg width:1000px](fig/tensor4all.svg)
 
 ---
+# Learning Feynmann diagrams by tensor networks
+
+<br>
+ファインマンダイアグラムの数値積分
+
+* 量子モンテカルロ法: 負符号問題 (統計誤差発散)
+* Tensor Cross Interpolation (TCI): 関数に潜む「低ランク性」→負符号問題に影響されない
+
+![bg right width:500px](fig/yuriel2022.png)
+
+<center>
+<span style="font-size: 0.7em">
+Y. N. Fernández <i>et al.</i>, PRX <b>12</b>, 041018 (2022).
+</span>
+</center>
+
+
+---
+# Quantics Tensor Train (QTT) + 場の量子論
+
+* 桁違いの長さスケールが存在する時空依存性の圧縮
+* 場の演算: 畳み込み, フーリエ変換など
+
+![bg right width:500px](fig/multiscale.png)
+
+
+<center>
+<span style="font-size: 0.7em">
+H. Shinaoka <i>et al.</i>, PRX <b>13</b>, 021015 (2023).
+</span>
+</center>
+
+---
+# QTT + 流体力学
+
+Navier–Stokes equations, 乱流, 空間依存性のQTT表現
+
+
+![bg right width:600px](fig/multiscale2.png)
+
+
+<center>
+<span style="font-size: 0.7em">
+N. Gourianov <i>et al.</i>, Nat. Comput. Sci. <b>2</b>, 30 (2022).
+</span>
+</center>
+
+
+---
 # Quantics tensor train (QTT)
 
 Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
 
 QTT 表現: 指数的解像度、不連続性もOK
+
+<b>図を追加！！！！！</b>
 
 ![width:1000px](fig/2D_quantics_zoom.png)
 
