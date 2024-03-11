@@ -194,17 +194,25 @@ N. Gourianov <i>et al.</i>, Nat. Comput. Sci. <b>2</b>, 30 (2022).
 
 
 ---
-# Quantics tensor train (QTT)
+# Demonstration 
 
 Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
 
-QTT 表現: 指数的解像度、不連続性もOK
+$$
+\begin{align}
+f(x,y) &= 1+e^{-0.4 \left( x^{2} + y^{2} \right)} + \sin \left( x y \right)  e^{-x^{2}} +\cos \left( 3 x y \right) e^{-y^{2}} + \cos \left( x + y \right) \nonumber \\
+& + 0.05 \cos \left[ 10^2 \cdot \left( 2 x - 4 y \right) \right] + 5\cdot 10^{-4} \cos \left[ 10^{3} \cdot \left( -2 x + 7 y \right) \right] + 10^{-5} \cos \left( 2\cdot 10^{8} x \right) 
+\end{align}
+$$
 
-<b>図を追加！！！！！</b>
 
 ![width:1000px](fig/2D_quantics_zoom.png)
 
-Tensor cross interpolation (TCI) は関数中の低ランク構造を探す「能動学習」アルゴリズムの一種.
+---
+# Nutshell
+
+* Quantics tensor train: 指数的解像度、不連続性もOK.
+* Tensor cross interpolation (TCI): 関数中の低ランク構造を探す「能動学習」アルゴリズムの一種.
 
 ---
 # テンソルネットワークとは？ (復習)
@@ -569,10 +577,12 @@ $\texttt{TensorCrossInterpolation.jl}$: 主開発者は, **M. K. Ritter** & H. S
 * $\texttt{ITensors.jl}$と連携可 (TCIからITensors.MPS/MPOへの変換など)
 
 ---
-# 今回はハンズオン
+# 今回のハンズオン
 
 
 今回は, インストールが簡単なJuliaライブラリ群を使います。
 
 - (作成中) [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
 - (作成中) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
+
+現在ドキュメント化されているのは, quantisc, TCI部分. 量子フーリエ変換などは, まだドキュメント化されていません ($\texttt{Quantics.jl}$).
