@@ -452,15 +452,15 @@ $$
 $$
 m(\bsigma) = (\sigma_1 \cdots \sigma_\scR)_2,~k(\bsigma') = (\sigma_1' \cdots \sigma_\scR')_2
 $$
-![center width:900px](fig/schematic_qft_before_unfolding.png)
-![center width:900px](fig/schematic_qft.png)
+![center width:900px](fig/schematic_qft_before_unfolding.svg)
+![center width:900px](fig/schematic_qft.svg)
 
 変換前後でインデックスが逆順で低ランク [Woolfe2017](https://www.rintonpress.com/journals/doi/QIC17.1-2-1.html), [Shinaoka2024](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.13.021015), [Chen2024](https://doi.org/10.1103/PRXQuantum.4.040318)
 
 ---
 # フーリエ変換カーネルのQTCI
 
-![center width:900px](fig/qft-bonddimensions.png)
+![center width:900px](fig/qft-bonddimensions.svg)
 
 <center>
 <span style="font-size: 0.8em">Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
