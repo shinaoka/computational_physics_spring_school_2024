@@ -163,16 +163,16 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 # 場をどう記述するか？
 
 * 連続変数を離散化する: グリッドを作る, adaptive mesh refinement
-* ニューラルネットワーク表現 (表現能力)
+* ニューラルネットワーク表現 (表現能力高)
 * **テンソルネットワーク表現** (構造化されたモデルによる高速な演算)
 
-**最近重要な進展**:
+**最近の重要な進展**:
 
 * 様々な「場」に潜む低ランク構造の発見 (quantics表現)
 * テンソルネットワークの「能動学習」アルゴリズムの開発 (tensor cross interpolation)
 
 ---
-# QTT + 流体力学
+# Quantics Tensor Train (QTT) + 流体力学
 
 Navier–Stokes equations, 乱流, 空間依存性のQTT表現
 
