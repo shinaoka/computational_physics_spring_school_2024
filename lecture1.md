@@ -61,6 +61,8 @@ $$
 \def\bx{{\boldsymbol{\mathrm{x}}}} 
 \def\sigmas{\sigma}
 
+\def\br{{\boldsymbol{r}}} 
+
 \newcommand{\FT}{{\scriptscriptstyle \mathrm{FT}}}
 \newcommand{\hf}{f^\FT}   %Fourier transform of \bff
 \newcommand{\hF}{F^\FT}
@@ -144,6 +146,33 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 
 ![bg width:1000px](fig/tensor4all.svg)
 
+
+---
+# 場の理論
+
+古典・量子場の理論では, 場を扱う.
+
+$$
+F(\br_1, \br_2, \cdots, \br_N).
+$$
+ここで, $\br_i \equiv (\vec{r}_i, t_i)$ ($i=1, \cdots, N$), $N$は粒子の数 or 考える散乱過程の次数.
+
+**例**: 量子多体系のグリーン関数, ファインマンダイアグラム, 流体の速度場
+
+**必要な演算**: 積分, 和, フーリエ変換, 畳み込み積分, 偏微分・常微分方程式の解など
+
+---
+# 場をどう記述するか？
+
+* 連続変数を離散化する: グリッドを作る, adaptive mesh refinement
+* ニューラルネットワーク表現 (汎化性能)
+* **テンソルネットワーク表現** (構造化されたモデルによる高速な演算)
+
+**最近重要な進展**:
+
+* 様々な「場」に潜む低ランク構造の発見 (quantics表現)
+* テンソルネットワーク学習するアルゴリズムの開発 (tensor cross interpolation)
+
 ---
 # Learning Feynmann diagrams by tensor networks
 
@@ -207,12 +236,6 @@ $$
 
 
 ![width:1000px](fig/2D_quantics_zoom.png)
-
----
-# Nutshell
-
-* Quantics tensor train: 指数的解像度、不連続性もOK.
-* Tensor cross interpolation (TCI): 関数中の低ランク構造を探す「能動学習」アルゴリズムの一種.
 
 ---
 # テンソルネットワークとは？ (復習)
