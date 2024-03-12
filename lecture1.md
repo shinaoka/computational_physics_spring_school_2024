@@ -150,12 +150,10 @@ julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "Quanti
 ---
 # 場の理論
 
-古典・量子場の理論では, 場を扱う.
+場とは時空に依存した関数: $F(\br_1, \br_2, \cdots, \br_N)$.
 
-$$
-F(\br_1, \br_2, \cdots, \br_N).
-$$
-ここで, $\br_i \equiv (\vec{r}_i, t_i)$ ($i=1, \cdots, N$), $N$は粒子の数 or 考える散乱過程の次数.
+* $\br_i \equiv (\vec{r}_i, t_i)$ ($i=1, \cdots, N$)
+* $N$は粒子の数 or 考える散乱過程の次数.
 
 **例**: 量子多体系のグリーン関数, ファインマンダイアグラム, 流体の速度場
 
@@ -165,13 +163,44 @@ $$
 # 場をどう記述するか？
 
 * 連続変数を離散化する: グリッドを作る, adaptive mesh refinement
-* ニューラルネットワーク表現 (汎化性能)
+* ニューラルネットワーク表現 (表現能力)
 * **テンソルネットワーク表現** (構造化されたモデルによる高速な演算)
 
 **最近重要な進展**:
 
 * 様々な「場」に潜む低ランク構造の発見 (quantics表現)
-* テンソルネットワーク学習するアルゴリズムの開発 (tensor cross interpolation)
+* テンソルネットワークの「能動学習」アルゴリズムの開発 (tensor cross interpolation)
+
+---
+# QTT + 流体力学
+
+Navier–Stokes equations, 乱流, 空間依存性のQTT表現
+
+
+![bg right width:600px](fig/multiscale2.png)
+
+
+<center>
+<span style="font-size: 0.7em">
+N. Gourianov <i>et al.</i>, Nat. Comput. Sci. <b>2</b>, 30 (2022).
+</span>
+</center>
+
+
+---
+# Quantics Tensor Train (QTT) + 場の量子論
+
+* 桁違いの長さスケールが存在する時空依存性の圧縮
+* 場の演算: 畳み込み, フーリエ変換など
+
+![bg right width:400px](fig/multiscale.png)
+
+
+<center>
+<span style="font-size: 0.7em">
+H. Shinaoka <i>et al.</i>, PRX <b>13</b>, 021015 (2023).
+</span>
+</center>
 
 ---
 # Learning Feynmann diagrams by tensor networks
@@ -191,41 +220,19 @@ Y. N. Fernández <i>et al.</i>, PRX <b>12</b>, 041018 (2022).
 </center>
 
 
----
-# Quantics Tensor Train (QTT) + 場の量子論
-
-* 桁違いの長さスケールが存在する時空依存性の圧縮
-* 場の演算: 畳み込み, フーリエ変換など
-
-![bg right width:500px](fig/multiscale.png)
-
-
-<center>
-<span style="font-size: 0.7em">
-H. Shinaoka <i>et al.</i>, PRX <b>13</b>, 021015 (2023).
-</span>
-</center>
 
 ---
-# QTT + 流体力学
+# Quantics Tensor Cross Interpolation (QTCI)
 
-Navier–Stokes equations, 乱流, 空間依存性のQTT表現
+Quanticsの指数解像度 + TCIの高速学習
 
+$\rightarrow$ 波数積分...
 
-![bg right width:600px](fig/multiscale2.png)
-
-
-<center>
-<span style="font-size: 0.7em">
-N. Gourianov <i>et al.</i>, Nat. Comput. Sci. <b>2</b>, 30 (2022).
-</span>
-</center>
-
+![bg right width:500px](fig/ritter2024.png)
 
 ---
 # Demonstration 
 
-Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
 
 $$
 \begin{align}
@@ -234,8 +241,9 @@ f(x,y) &= 1+e^{-0.4 \left( x^{2} + y^{2} \right)} + \sin \left( x y \right)  e^{
 \end{align}
 $$
 
-
 ![width:1000px](fig/2D_quantics_zoom.png)
+
+Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
 
 ---
 # テンソルネットワークとは？ (復習)
