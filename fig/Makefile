@@ -1,6 +1,6 @@
 SOURCES ?= $(wildcard *.pdf)
 
 %.png: %.pdf
-	convert -density 400 $< $@
+	convert -density 200 $< $@
 
 all: $(SOURCES:%.pdf=%.png)

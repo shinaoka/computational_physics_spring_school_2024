@@ -87,6 +87,7 @@ Tensor network representation learning for physics
 
 ### 目標
 データ/関数をテンソルネットワークで表現し, その特徴を抽出する方法を学ぶ.
+Juliaをつかって自分で作った関数をテンソルネットワークで表現してみる.
 
 * 前半
    - Tensor networkの復習
@@ -224,14 +225,20 @@ Y. N. Fernández <i>et al.</i>, PRX <b>12</b>, 041018 (2022).
 ---
 # Quantics Tensor Cross Interpolation (QTCI)
 
-Quanticsの指数解像度 + TCIの高速学習
+指数的解像度 + TCIの高速学習
 
-$\rightarrow$ 波数積分...
+$\rightarrow$ 波数積分などへの応用
 
 ![bg right width:500px](fig/ritter2024.png)
 
+<center>
+<span style="font-size: 0.7em">
+M. K. Ritter, Y. N. Fernández, M. Wallerberger, J. von Delft, H. Shinaoka, X. Waintal, PRL <b>132</b>, 056501 (2024).
+</span>
+</center>
+
 ---
-# Demonstration 
+# Demonstration of QTCI
 
 
 $$
@@ -307,8 +314,8 @@ $$
 
 離散グリッド:
 $$
-x_1: \{x_1(1), \cdots, x_1(d_1)\}, \cdots,
-x_\scN: \{x_\scN(1), \cdots, x_\scN(d_\scN)\}
+x_1\rightarrow \{x_1(1), \cdots, x_1(d_1)\}, \cdots,
+x_\scN\rightarrow \{x_\scN(1), \cdots, x_\scN(d_\scN)\}
 $$
 
 ここで, $d_\ell$は, $\ell$番目の変数に対する離散化グリッドの大きさ.
@@ -327,7 +334,7 @@ I. V. Oseledets, Doklady Math. **80**, 653 (2009), B. N. Khoromskij, Constr. App
 ---
 # 10進法
 
-例えば, 3桁の非負整数を考えてみよう ($\mathscr{R}=3$):
+例えば, 3桁の非負整数を考えてみよう ($\cR=3$):
 $i = 000, 001, 002, \cdots, 010, 011, \cdots, 100, 101, \cdots, 999.$
 
 1つの数字を異なる桁を表す複数の数字の組で表現する.
@@ -373,7 +380,7 @@ Quanticsでは通常2進数を使うが, 底は任意 (一部の特殊例, フ�
 # Quantics representation (1変数)[2]
 
 
-![center width:800px](fig/1dquantics.svg)
+![center width:900px](fig/1dquantics.svg)
 
 $2^\scR$の大きな足を, $\cR$個の大きさ2の足に分割!
 
@@ -460,9 +467,9 @@ $f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めて
 
 与えられた関数から,
 * 低ランク表現の有無を判定したい,
-* あるなら(半)自動的に構築したい.
+* あるなら(半)自動的にTTを構築したい.
 
-**TCIは, そのような目的に使える手法の一つ.**
+**TCIは, そのような目的に使える能動学習手法の一つ.**
 
 
 ### 注意
@@ -496,8 +503,7 @@ $$
 
 * 選択された色付きの行と列で, 両辺の要素は必ず一致
 * ピボットの数 = 行列のランクの時は, 両辺は全体で一致
-* 良いピボットを選ぶヒューリスティックス法 (e.g., maxvol algorithm)
-  - $\texttt{TensorCrossInterpolation.jl}$: LU分解によるピボット選択 + グローバル探索
+* 良いピボットを選ぶヒューリスティックス法 (e.g., maxvol algorithm). 基本的には, $|A - \tilde A|_\mathrm{max}$を最小化するように選ぶ.
 
 ---
 # MCIの動作
@@ -506,7 +512,14 @@ $$
 
 
 ---
-# Tensor Cross Interpolation (TCI) in a nutshell
+# MCI $\rightarrow$ TCI
+
+![center width:1200px](fig/schematic_tci_revised.svg)
+
+内挿の精度は, ピボットの数や選び方に強く依存. $\texttt{TensorCrossInterpolation.jl}$: LU分解によるピボット選択 + グローバル探索
+
+---
+# Tensor Cross Interpolation (TCI)の特徴
 
 テンソルの要素を適応的に探索し, 低ランクTT表現を求める. 
 
@@ -586,6 +599,7 @@ $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラ�
   - Julia: $\texttt{TensorCrossInterpolation.jl}$など 最後に少し紹介します！
 
 (Q)TCIを使って, 低ランクなデータを探してみよう!
+本格的に研究に参入したい方は, 最近立ち上げてtensor4allグループに参加可.
 
 
 ---
@@ -613,7 +627,7 @@ $\texttt{TensorCrossInterpolation.jl}$: 主開発者は, **M. K. Ritter** & H. S
 
 今回は, インストールが簡単なJuliaライブラリ群を使います。
 
-- (作成中) [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
-- (作成中) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
+- [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
+- (作成中, 引っ越しするかも) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
 
-現在ドキュメント化されているのは, quantisc, TCI部分. 量子フーリエ変換などは, まだドキュメント化されていません ($\texttt{Quantics.jl}$).
+現在ドキュメント化されているのは, quantisc, TCI部分. ITensors.jlとの連携, 量子フーリエ変換等の演算機能は, 公開されているけど, ドキュメント化されていません ($\texttt{Quantics.jl}$).
