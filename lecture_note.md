@@ -443,10 +443,7 @@ Tensor Train Operator (TTO):
 ---
 # 演習問題: Natural tensor representation
 
-以下の3変数関数がボンド1次元のTTで表現できることを示してみましょう.
-$$
-f(x, y, z) = x y z
-$$
+3変数関数$f(x, y, z) = x y z$が, ボンド1次元のTTで表現できることを示してみましょう. ただし, natural tensor representationを使うこと.
 
 
 ---
@@ -454,10 +451,17 @@ $$
 
 $f(x) = e^{x}~(x\in [0, 1])$は, ボンド次元1のQTT表現を持つことを示してみましょう.
 
+
 ---
 # 演習問題: Quantics representation (2)
 
-$f(x) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めてみましょう.
+$f(x, y) = \delta_{xy}$の, ボンド次元1のQTT表現を求めてみましょう ($x, y = 0, 1, 2, \cdots, 2^\scR-1$).
+
+
+---
+# 演習問題: Quantics representation (3)
+
+$f(x, y) = e^{x + y}~(x, y\in [0, 1])$の, ボンド次元1のQTT表現を求めてみましょう.
 
 
 
