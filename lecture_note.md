@@ -66,6 +66,20 @@ $$
 \newcommand{\FT}{{\scriptscriptstyle \mathrm{FT}}}
 \newcommand{\hf}{f^\FT}   %Fourier transform of \bff
 \newcommand{\hF}{F^\FT}
+
+\newcommand{\mI}{\mathcal{I}}
+\newcommand{\mJ}{\mathcal{J}}
+\newcommand{\aI}{\mathbbm{I}}
+\newcommand{\aJ}{\mathbbm{J}}
+
+\newcommand{\ellp}{{\ell'}}
+\newcommand{\ellpminusone}{{\ellp \hspace{-0.2mm}-\hspace{-0.2mm} 1}}
+\newcommand{\ellminusone}{{\ell \hspace{-0.2mm}-\hspace{-0.2mm} 1}}
+\newcommand{\ellplusone}{{\ell  \hspace{-0.2mm}+\hspace{-0.2mm} 1}}
+\newcommand{\ellpplusone}{{\ellp  \hspace{-0.2mm}+\hspace{-0.2mm} 1}}
+\newcommand{\ellplustwo}{{\ell  \hspace{-0.2mm}+\hspace{-0.2mm} 2}}
+\newcommand{\ellpplustwo}{{\ellp  \hspace{-0.2mm}+\hspace{-0.2mm} 2}}
+\newcommand{\ellminustwo}{{\ell \hspace{-0.2mm}-\hspace{-0.2mm} 2}}
 $$
 
 Tensor network representation learning for physics
@@ -81,6 +95,20 @@ Tensor network representation learning for physics
 <center>
 <span style="font-size: 0.9em; color: red">This lecture is based on Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.</span>
 </center>
+
+
+---
+# 自己紹介 [https://shinaoka.github.io](https://shinaoka.github.io)
+
+* 経歴
+  - 博士 (工学) 2009年3月@東大物工
+  - ポスドク 2009年3月〜2015年9月 (東大、産総研、チューリッヒ連邦工科大)
+  - 研究室主催＠埼玉大 2015年10月〜
+* 専門
+  - 量子多体理論、第一原理計算、幾何学的フラストレート磁性･･･
+  - 計算物理バックエンドの開発に興味<br>ALPS量子モンテカルロコード、スパースモデリング･･･
+* 海外との連携
+* 学術変革領域B「量子古典融合アルゴリズムが拓く計算物質科学」
 
 ---
 # 今日の講義
@@ -115,7 +143,7 @@ Juliaをつかって自分で作った関数をテンソルネットワークで
 
 
 ### ハンズオン資料
-- (作成中) [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
+- (作成中) [Tensors4FieldsのWebサイト](https://gitlab.com/tensors4fields)
 - (作成中) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
 
 ---
@@ -138,7 +166,11 @@ Juliaをつかって自分で作った関数をテンソルネットワークで
 ```julia
 julia -e 'using Pkg; Pkg.add(["Example"])'
 julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url="https://gitlab.com/tensors4fields/tensors4fieldsregistry.git"))'
-julia -e 'using Pkg; Pkg.add(["QuanticsTCI", "TensorCrossInterpolation", "QuanticsGrids", "TCIITensorConversion", "Plots", "PythonPlot", "LaTeXStrings"])'
+julia -e 'using Pkg; Pkg.add(PackageSpec(name="QuanticsTCI", version="0.4.3"))'
+julia -e 'using Pkg; Pkg.add(PackageSpec(name="QuanticsGrids", version="0.2"))'
+julia -e 'using Pkg; Pkg.add(PackageSpec(name="TensorCrossInterpolation", version="0.8"))'
+julia -e 'using Pkg; Pkg.add(PackageSpec(name="TCIITensorConversion", version="0.1"))'
+julia -e 'using Pkg; Pkg.add(["Plots", "PythonPlot", "LaTeXStrings"])'
 ````
 
 
@@ -252,26 +284,14 @@ $$
 
 Dense grid ($10^{12}\times 10^{12}$, $10^{13}$ TB) $\rightarrow$ Quantics grid ($10^5$ floats, 1 MB)
 
----
-# テンソルネットワークとは？ (復習)
-<center>
-<span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
-</center>
-
-
-![center height:450px bottom](fig/standardTTtoolboxXavierVersion.svg)
 
 ---
-# Black page for drawing
-
-
----
-# (復習用資料) Rank of a matrix
+# Rank of a matrix (復習)
 
 行列$A$のランク$\mathrm{rank}(A)$の定義:
 
 * $A$の$r$個の行/列ベクトルが線形独立 $\rightarrow$ $\mathrm{rank}(A)$ = $r$
-* $A = U \Sigma V^T$ (SVD) $\rightarrow$ $\mathrm{rank}(A)$ = $\mathrm{rank}(\Sigma)$=非0の特異値の数
+* $A = U \Sigma V^T$ (Singular Value Decomposiiton/SVD) $\rightarrow$ $\mathrm{rank}(A)$ = $\mathrm{rank}(\Sigma)$=非0の特異値の数
 
 行列の低ランク構造 $r$によって, $A$を次のようにSVDできる:
 $$
@@ -281,7 +301,7 @@ $$
 SVDの他に, QR分解, LU分解などがある.
 
 ---
-# (復習用資料) Low-rank approximation of a matrix
+# Low-rank approximation of a matrix (復習)
 
 ### 定義
 $$
@@ -291,6 +311,20 @@ $$
 ### ノルム$\| \cdots \|$の選択
 * フロベニウスノルム $\|B\|_\mathrm{F} = \sqrt{\sum_{ij}|B_{ij}|^2}$ $\rightarrow$ 特異値分解＋打ち切りが最適
 * 最大値ノルム $\|B\|_\mathrm{max} = \max_{ij} |B_{ij}|$ $\rightarrow$ rank-revealing LU分解が使える (後述のTCIのバックエンド)
+
+
+
+---
+# テンソルネットワーク (復習)
+<center>
+<span style="font-size: 0.7em">Taken from Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation</span>
+</center>
+
+
+![center height:450px bottom](fig/standardTTtoolboxXavierVersion.svg)
+
+---
+# Black page for drawing
 
 
 ---
@@ -520,7 +554,33 @@ $$
 
 ![center width:1200px](fig/schematic_tci_revised.svg)
 
-内挿の精度は, ピボットの数や選び方に強く依存. $\texttt{TensorCrossInterpolation.jl}$: LU分解によるピボット選択 + グローバル探索
+$[T_\ell]^{\sigma_\ell}_{i_{\ell-1} j_{\ell+1}} \equiv F_{i_{l-1}\sigma_\ell j_{l+1}},~[P_\ell]^{\sigma_\ell}_{i_{\ell} j_{\ell+1}} \equiv F_{i_\ell j_{l+1}}$
+
+内挿の精度は, ピボットの数や選び方に強く依存.
+
+---
+# Nesting condition
+
+![center width:1200px](fig/schematic_tci_revised.svg)
+
+$[T_\ell]^{\sigma_\ell}_{i_{\ell-1} j_{\ell+1}} \equiv F_{i_{l-1}\sigma_\ell j_{l+1}},~[P_\ell]^{\sigma_\ell}_{i_{\ell} j_{\ell+1}} \equiv F_{i_\ell j_{l+1}}$
+
+
+$T_\ell$に対するpartial nesting condition:
+* 全ての$\ellp \le \ell-1$に対して, $\mI_\ellpminusone \!\times\! \{\sigma_\ellp\} \subseteq \mathcal{I}_\ellp$が成立
+* 全ての$\ellp \ge \ell+1$に対して, $\{\sigma_\ellp\} \!\times\! \mJ_\ellpplusone \subseteq \mathcal{J}_\ellp$が成立.
+
+$\Longrightarrow$ 内挿$\tilde F$は, $T_\ell$に含まれる全ての要素において, $F$と一致.
+
+---
+# Pivot selection
+
+色んな方法があります.
+
+* TCI**1**アルゴリズム: 例えば, Y. N. Fernández <i>et al.</i>, PRX <b>12</b>, 041018 (2022)にレビューされている.
+* TCI**2**アルゴリズム: LU分解ベースの新しい方法. Y. N. Fernández, ... , J. von Delft, H. Shinaoka, and X Waintal, in preparation.
+
+$\texttt{TensorCrossInterpolation.jl}$の「デフォルト」は, TCI**2**とグローバルピボット探索アルゴリズム
 
 ---
 # Tensor Cross Interpolation (TCI)の特徴
@@ -602,8 +662,10 @@ $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラ�
   - C++/Python: $\texttt{xfac}$
   - Julia: $\texttt{TensorCrossInterpolation.jl}$など 最後に少し紹介します！
 
+Future directions: more general tensor networks, parallelization, applications!
+
 (Q)TCIを使って, 低ランクなデータを探してみよう!
-本格的に研究に参入したい方は, 最近立ち上げてtensor4allグループに参加可.
+本格的に研究に参入したい方は, 最近立ち上げたtensor4allグループに参加可.
 
 
 ---
@@ -614,14 +676,12 @@ $\texttt{Quantics.jl}$に実装されてます (まだ実験的なライブラ�
 近日publicになるはず.
 </center>
 
-$\texttt{xfac}$: こっちがoriginal. 主開発者はY. N. Fernández.
+$\texttt{xfac}$ ($\texttt{C++}$): こっちがoriginal. 主開発者はY. N. Fernández.
 
-* $\texttt{C++}$ライブラリ
 * 一部機能は, $\texttt{Python}$から呼び出せる.
 
-$\texttt{TensorCrossInterpolation.jl}$: 主開発者は, **M. K. Ritter** & H. Shinaoka.
+$\texttt{TensorCrossInterpolation.jl}$: 主開発者は, **M. K. Ritter** & H. Shinaoka + 寺崎さんのサポート.
 
-* Juliaによる実装
 * 複数のJuliaライブラリ ($\texttt{QuanticsTCI.jl}$, $\texttt{QuanticsGrids.jl}$...)と連携
 * $\texttt{ITensors.jl}$と連携可 (TCIからITensors.MPS/MPOへの変換など)
 
@@ -631,7 +691,7 @@ $\texttt{TensorCrossInterpolation.jl}$: 主開発者は, **M. K. Ritter** & H. S
 
 今回は, インストールが簡単なJuliaライブラリ群を使います。
 
-- [Tensors4FieldsのWebサイト](https://gitlab.com/groups/tensors4fields/-/wikis/Welcome-to-Tensors4Fields)
+- [Tensors4FieldsのWebサイト](https://gitlab.com/tensors4fields)
 - (作成中, 引っ越しするかも) [Tensors4Fieldsのサンプル集](https://tensors4fields.gitlab.io/T4FExamples.jl/dev/index.html)
 
 現在ドキュメント化されているのは, quantisc, TCI部分. ITensors.jlとの連携, 量子フーリエ変換等の演算機能は, 公開されているけど, ドキュメント化されていません ($\texttt{Quantics.jl}$).
